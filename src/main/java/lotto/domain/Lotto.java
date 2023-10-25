@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class Lotto {
@@ -19,6 +20,13 @@ public class Lotto {
     public void validateLength(List<Integer> numberList) {
         if (numberList.size() != 6) {
             throw new IllegalArgumentException("당첨 번호의 숫자는 6개이어야 합니다.");
+        }
+    }
+
+    public void validateDigit(List<Integer> numberList) {
+        if (numberList.stream()
+                .anyMatch(n -> !Character.isDigit(n))) {
+            throw new IllegalArgumentException("당첨 번호의 숫자는 모두 정수이어야 합니다.");
         }
     }
 
