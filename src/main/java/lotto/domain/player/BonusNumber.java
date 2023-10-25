@@ -1,5 +1,8 @@
 package lotto.domain.player;
 
+import static java.lang.Character.*;
+import static java.lang.Integer.*;
+
 public class BonusNumber {
     private int bonusNumber;
 
@@ -12,6 +15,12 @@ public class BonusNumber {
     public void validateLength(String bonusNumber) {
         if (bonusNumber.length() < 3) {
             throw new IllegalArgumentException("보너스 숫자는 1자리, 또는 2자리이어야 합니다.");
+        }
+    }
+
+    public void validateDigit(String bonusNumber) {
+        if (!isDigit(parseInt(bonusNumber))) {
+            throw new IllegalArgumentException("보너스 숫자는 정수이어야 합니다.");
         }
     }
 }
