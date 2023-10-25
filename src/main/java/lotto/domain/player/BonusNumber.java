@@ -23,4 +23,10 @@ public class BonusNumber {
             throw new IllegalArgumentException("보너스 숫자는 정수이어야 합니다.");
         }
     }
+
+    public void validateRange(String bonusNumber) {
+        if (parseInt(bonusNumber) < 1 || parseInt(bonusNumber) > 45) {
+            throw new IllegalArgumentException("보너스 숫자는 1~45의 숫자이어야 합니다.");
+        }
+    }
 }
