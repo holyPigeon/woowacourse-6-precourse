@@ -30,6 +30,13 @@ public class Lotto {
         }
     }
 
+    public void validateRange(List<Integer> numberList) {
+        if (numberList.stream()
+                .anyMatch(n -> n < 1 || n > 45)) {
+            throw new IllegalArgumentException("당첨 번호의 숫자는 1~45의 숫자이어야 합니다.");
+        }
+    }
+
     public List<Integer> convertLottoStringToList(String lottoString) {
         String[] splitResult = lottoString.split(", ");
         validateSplit(lottoString, splitResult);
