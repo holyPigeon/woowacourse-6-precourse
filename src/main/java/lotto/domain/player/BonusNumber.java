@@ -6,6 +6,11 @@ import static java.lang.Integer.*;
 public class BonusNumber {
     private int bonusNumber;
 
+    public BonusNumber(String bonusNumber) {
+        validate(bonusNumber);
+        this.bonusNumber = parseInt(bonusNumber);
+    }
+
     public void validate(String bonusNumber) {
         validateEmpty(bonusNumber);
         validateLength(bonusNumber);
