@@ -16,5 +16,9 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    public void validateSplit(String originalString, String[] splitResult) {
+        if (originalString.equals(splitResult[0])) {
+            throw new IllegalArgumentException("당첨 번호는 \", \"를 기준으로 구분되어야 합니다.");
+        }
+    }
 }
