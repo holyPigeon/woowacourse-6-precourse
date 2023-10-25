@@ -6,6 +6,13 @@ import static java.lang.Integer.*;
 public class BonusNumber {
     private int bonusNumber;
 
+    public void validate(String bonusNumber) {
+        validateEmpty(bonusNumber);
+        validateLength(bonusNumber);
+        validateDigit(bonusNumber);
+        validateRange(bonusNumber);
+    }
+
     public void validateEmpty(String bonusNumber) {
         if (bonusNumber.isEmpty()) {
             throw new IllegalArgumentException("보너스 숫자는 비어있지 않아야 합니다.");
