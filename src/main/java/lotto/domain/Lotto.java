@@ -16,6 +16,12 @@ public class Lotto {
         }
     }
 
+    public void validateLength(List<Integer> numberList) {
+        if (numberList.size() != 6) {
+            throw new IllegalArgumentException("당첨 번호의 숫자는 6개이어야 합니다.");
+        }
+    }
+
     public List<Integer> convertLottoStringToList(String lottoString) {
         String[] splitResult = lottoString.split(", ");
         validateSplit(lottoString, splitResult);
