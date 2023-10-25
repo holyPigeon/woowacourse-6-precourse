@@ -6,6 +6,11 @@ public class PurchaseAmount {
 
     private int purchaseAmount;
 
+    public PurchaseAmount(String purchaseAmount) {
+        validate(purchaseAmount);
+        this.purchaseAmount = parseInt(purchaseAmount);
+    }
+
     public void validate(String purchaseAmount) {
         validateEmpty(purchaseAmount);
         validateDigit(purchaseAmount);
