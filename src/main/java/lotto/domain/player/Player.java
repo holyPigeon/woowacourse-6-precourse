@@ -8,4 +8,10 @@ public class Player {
     private PurchaseAmount purchaseAmount;
 
     private BonusNumber bonusNumber;
+
+    public Player(List<Integer> lottoList, String purchaseAmount, String bonusNumber) {
+        this.lottoList = lottoList;
+        this.purchaseAmount = new PurchaseAmount(purchaseAmount);
+        this.bonusNumber = new BonusNumber(bonusNumber);
+    }
 }
