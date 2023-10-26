@@ -11,10 +11,10 @@ public class Lotto {
         this.numberList = numberList;
     }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
-        }
+    private void validate(List<Integer> numberList) {
+        validateLength(numberList);
+        validateDigit(numberList);
+        validateRange(numberList);
     }
 
     public void validateLength(List<Integer> numberList) {
