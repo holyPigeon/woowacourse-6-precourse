@@ -33,4 +33,9 @@ public class LottoController {
     public int getLottoCount(String purchaseAmount) {
         return parseInt(purchaseAmount) / 1000;
     }
+
+    private List<Integer> readPlayerNumberList() {
+        outputView.printLottoNumberMessage();
+        return convertLottoStringToList(inputView.read());
+    }
 }
