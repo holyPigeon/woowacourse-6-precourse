@@ -12,4 +12,8 @@ public class LottoController {
         outputView.printPurchaseAmountMessage();
         return inputView.read();
     }
+
+    public int getLottoCount(String purchaseAmount) {
+        return Integer.parseInt(purchaseAmount) / 1000;
+    }
 }
