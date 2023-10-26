@@ -13,7 +13,7 @@ public class Lotto {
         this.numberList = numberList;
     }
 
-    public List<Integer> generateWinningNumber() {
+    public static List<Integer> generateWinningNumber() {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 
