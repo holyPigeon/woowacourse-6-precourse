@@ -1,5 +1,7 @@
 package lotto.view;
 
+import java.util.List;
+
 public class OutputView {
 
     private static final OutputView instance = new OutputView();
@@ -18,6 +20,10 @@ public class OutputView {
 
     public void printGeneratedLottoCountMessage(int count) {
         System.out.println(8 + "개를 구매했습니다.");
+    }
+
+    public void printGeneratedLottoNumberMessage(List<Integer> numberList) {
+        System.out.println(numberList.toString());
     }
 
     public void printLottoNumberMessage() {
