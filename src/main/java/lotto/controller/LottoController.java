@@ -38,4 +38,9 @@ public class LottoController {
         outputView.printLottoNumberMessage();
         return convertLottoStringToList(inputView.read());
     }
+
+    private String readBonusNumber() {
+        outputView.printBonusNumberMessage();
+        return inputView.read();
+    }
 }
