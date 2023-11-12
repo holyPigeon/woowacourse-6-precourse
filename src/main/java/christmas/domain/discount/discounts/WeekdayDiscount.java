@@ -10,7 +10,7 @@ import christmas.util.DateUtil;
 import java.time.LocalDate;
 import java.util.Map;
 
-public class WeekdayDiscount implements Discount{
+public class WeekdayDiscount implements Discount {
     @Override
     public int calculateDiscountAmount(Map<Menu, Quantity> customerMenus, Day day) {
         if (isWeekday(day)) {
@@ -20,10 +20,18 @@ public class WeekdayDiscount implements Discount{
     }
 
     private static int findDiscountableMenuCount(Map<Menu, Quantity> customerMenus) {
-        return (int) customerMenus.keySet()
-                .stream()
-                .filter(menu -> menu.getType().equals(MenuType.DESSERT))
-                .count();
+        return customerMenus.entrySet().stream()
+                .filter(WeekdayDiscount::isMenuTypeDessert)
+                .mapToInt(WeekdayDiscount::getQuantity)
+                .sum();
+    }
+    private static boolean isMenuTypeDessert(Map.Entry<Menu, Quantity> entry) {
+        return entry.getKey().getType()
+                .equals(MenuType.DESSERT);
+    }
+
+    private static Integer getQuantity(Map.Entry<Menu, Quantity> entry) {
+        return entry.getValue().getPrimitiveQuantity();
     }
 
     @Override
