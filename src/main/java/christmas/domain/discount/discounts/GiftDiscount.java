@@ -1,5 +1,6 @@
-package christmas.domain.discount;
+package christmas.domain.discount.discounts;
 
+import christmas.domain.discount.Discount;
 import christmas.domain.order.menu.Menu;
 import christmas.domain.order.Day;
 import christmas.domain.order.menu.Quantity;

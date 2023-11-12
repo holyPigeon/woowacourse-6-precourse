@@ -1,5 +1,6 @@
-package christmas.domain.discount;
+package christmas.domain.discount.discounts;
 
+import christmas.domain.discount.Discount;
 import christmas.domain.order.menu.Menu;
 import christmas.domain.order.Day;
 import christmas.domain.order.menu.Quantity;
@@ -8,7 +9,7 @@ import christmas.util.DateUtil;
 import java.time.LocalDate;
 import java.util.Map;
 
-public class SpecialDiscount implements Discount{
+public class SpecialDiscount implements Discount {
     @Override
     public int calculateDiscountAmount(Map<Menu, Quantity> customerMenus, Day day) {
         if (isAvailableDiscount(customerMenus, day)) {

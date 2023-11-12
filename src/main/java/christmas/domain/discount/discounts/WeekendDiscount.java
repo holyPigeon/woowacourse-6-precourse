@@ -1,5 +1,6 @@
-package christmas.domain.discount;
+package christmas.domain.discount.discounts;
 
+import christmas.domain.discount.Discount;
 import christmas.domain.order.menu.Menu;
 import christmas.domain.order.menu.MenuType;
 import christmas.domain.order.Day;
@@ -9,7 +10,7 @@ import christmas.util.DateUtil;
 import java.time.LocalDate;
 import java.util.Map;
 
-public class WeekdayDiscount implements Discount{
+public class WeekendDiscount implements Discount{
     @Override
     public int calculateDiscountAmount(Map<Menu, Quantity> customerMenus, Day day) {
         if (isWeekday(day)) {
@@ -21,7 +22,7 @@ public class WeekdayDiscount implements Discount{
     private static int findDiscountableMenuCount(Map<Menu, Quantity> customerMenus) {
         return (int) customerMenus.keySet()
                 .stream()
-                .filter(menu -> menu.getType().equals(MenuType.DESSERT))
+                .filter(menu -> menu.getType().equals(MenuType.MAIN))
                 .count();
     }
 
@@ -32,6 +33,6 @@ public class WeekdayDiscount implements Discount{
 
     private boolean isWeekday(Day day) {
         LocalDate localDate = DateUtil.convertDayToLocalDate(day);
-        return localDate.getDayOfWeek().getValue() <= 5; // 1: Monday, 2: Tuesday, ..., 7: Sunday
+        return localDate.getDayOfWeek().getValue() >= 6; // 1: Monday, 2: Tuesday, ..., 7: Sunday
     }
 }
