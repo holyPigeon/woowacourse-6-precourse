@@ -1,8 +1,8 @@
 package christmas.domain.discount;
 
-import christmas.Menu;
-import christmas.domain.Day;
-import christmas.domain.Quantity;
+import christmas.domain.order.menu.Menu;
+import christmas.domain.order.Day;
+import christmas.domain.order.menu.Quantity;
 
 import java.util.Map;
 

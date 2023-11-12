@@ -1,6 +1,6 @@
 package christmas.util;
 
-import christmas.domain.Day;
+import christmas.domain.order.Day;
 
 import java.time.LocalDate;
 

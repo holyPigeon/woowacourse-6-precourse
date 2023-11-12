@@ -1,9 +1,9 @@
 package christmas.domain.discount;
 
-import christmas.Menu;
-import christmas.MenuType;
-import christmas.domain.Day;
-import christmas.domain.Quantity;
+import christmas.domain.order.menu.Menu;
+import christmas.domain.order.menu.MenuType;
+import christmas.domain.order.Day;
+import christmas.domain.order.menu.Quantity;
 import christmas.util.DateUtil;
 
 import java.time.LocalDate;
