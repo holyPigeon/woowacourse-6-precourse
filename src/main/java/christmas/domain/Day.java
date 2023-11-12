@@ -1,10 +1,10 @@
 package christmas.domain;
 
-public class Date {
+public class Day {
 
     private Integer date;
 
-    public Date(Integer date) {
+    public Day(Integer date) {
         validate(date);
         this.date = date;
     }
