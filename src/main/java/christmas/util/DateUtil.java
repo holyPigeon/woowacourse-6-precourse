@@ -11,6 +11,6 @@ public class DateUtil {
     }
 
     public static LocalDate convertDayToLocalDate(Day day) {
-        return LocalDate.of(2023, 12, day.getDay());
+        return LocalDate.of(2023, 12, day.getPrimitiveDay());
     }
 }

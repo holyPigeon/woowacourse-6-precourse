@@ -23,7 +23,7 @@ public class Day {
         return number < 1  || number > 31;
     }
 
-    public Integer getDay() {
+    public Integer getPrimitiveDay() {
         return day;
     }
 }

@@ -28,6 +28,6 @@ public class SpecialDiscount implements Discount{
     }
 
     private boolean isChristmasDay(Day day) {
-        return day.getDay() == 25;
+        return day.getPrimitiveDay() == 25;
     }
 }
