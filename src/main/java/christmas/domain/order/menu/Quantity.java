@@ -1,5 +1,7 @@
 package christmas.domain.order.menu;
 
+import christmas.validator.OrderValidator;
+
 public class Quantity {
 
     private Integer quantity;
@@ -10,13 +12,7 @@ public class Quantity {
     }
 
     private void validate(Integer quantity) {
-        validateIsGreaterThanCondition(quantity);
-    }
-
-    private void validateIsGreaterThanCondition(Integer quantity) {
-        if (quantity < 1) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
-        }
+        OrderValidator.validateIsGreaterThanCondition(quantity);
     }
 
     public Integer getPrimitiveQuantity() {

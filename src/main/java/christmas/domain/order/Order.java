@@ -3,6 +3,7 @@ package christmas.domain.order;
 import christmas.domain.order.menu.Menu;
 import christmas.domain.order.menu.MenuType;
 import christmas.domain.order.menu.Quantity;
+import christmas.validator.OrderValidator;
 
 import java.util.EnumMap;
 import java.util.Map;
@@ -17,47 +18,8 @@ public class Order {
     }
 
     private void validate(Map<Menu, Quantity> customerMenus) {
-        validateHasDuplicateMenu(customerMenus);
-        validateHasOnlyDrink(customerMenus);
-        validateIsTotalQuantityValid(customerMenus);
-    }
-
-    private void validateHasDuplicateMenu(Map<Menu, Quantity> customerMenus) {
-        if (hasDuplicateMenu(customerMenus)) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
-        }
-    }
-
-    private boolean hasDuplicateMenu(Map<Menu, Quantity> customerMenus) {
-        return customerMenus.keySet()
-                .stream()
-                .distinct()
-                .count() != customerMenus.size();
-    }
-
-    private void validateHasOnlyDrink(Map<Menu, Quantity> customerMenus) {
-        if (hasOnlyDrink(customerMenus)) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
-        }
-    }
-
-    private static boolean hasOnlyDrink(Map<Menu, Quantity> customerMenus) {
-        return customerMenus.keySet()
-                .stream()
-                .filter(menu -> menu.getType().equals(MenuType.DRINK))
-                .count() == customerMenus.size();
-    }
-
-    private void validateIsTotalQuantityValid(Map<Menu, Quantity> customerMenus) {
-        if (calculateTotalQuantity(customerMenus) > 20) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
-        }
-    }
-
-    private int calculateTotalQuantity(Map<Menu, Quantity> customerMenus) {
-        return customerMenus.values()
-                .stream()
-                .mapToInt(Quantity::getPrimitiveQuantity)
-                .sum();
+        OrderValidator.validateHasDuplicateMenu(customerMenus);
+        OrderValidator.validateHasOnlyDrink(customerMenus);
+        OrderValidator.validateIsTotalQuantityValid(customerMenus);
     }
 }
