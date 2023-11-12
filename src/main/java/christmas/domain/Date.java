@@ -22,4 +22,8 @@ public class Date {
     private boolean isNumberInRange(Integer number) {
         return number < 1  || number > 31;
     }
+
+    public Integer getDate() {
+        return date;
+    }
 }
