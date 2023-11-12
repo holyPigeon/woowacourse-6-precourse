@@ -1,4 +1,4 @@
-package christmas.domain.util;
+package christmas.util;
 
 import christmas.domain.Day;
 
