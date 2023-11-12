@@ -18,6 +18,7 @@ public class Order {
     private void validate(Map<Menu, Quantity> customerMenus) {
         validateHasDuplicateMenu(customerMenus);
         validateHasOnlyDrink(customerMenus);
+        validateIsTotalQuantityValid(customerMenus);
     }
 
     private void validateHasDuplicateMenu(Map<Menu, Quantity> customerMenus) {
@@ -44,5 +45,18 @@ public class Order {
                 .stream()
                 .filter(menu -> menu.getType().equals(MenuType.DRINK))
                 .count() == customerMenus.size();
+    }
+
+    private void validateIsTotalQuantityValid(Map<Menu, Quantity> customerMenus) {
+        if (calculateTotalQuantity(customerMenus) > 20) {
+            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+        }
+    }
+
+    private int calculateTotalQuantity(Map<Menu, Quantity> customerMenus) {
+        return customerMenus.values()
+                .stream()
+                .mapToInt(Quantity::getPrimitiveQuantity)
+                .sum();
     }
 }
