@@ -21,9 +21,17 @@ public class GiftDiscount implements Discount {
     }
 
     private static int calculateTotalPrice(Map<Menu, Quantity> customerMenus) {
-        return customerMenus.keySet()
+        return customerMenus.entrySet()
                 .stream()
-                .mapToInt(Menu::getPrice)
+                .mapToInt(entry -> getMenuPrice(entry) * getEachQuantity(entry))
                 .sum();
+    }
+
+    private static Integer getEachQuantity(Map.Entry<Menu, Quantity> entry) {
+        return entry.getValue().getPrimitiveQuantity();
+    }
+
+    private static int getMenuPrice(Map.Entry<Menu, Quantity> entry) {
+        return entry.getKey().getPrice();
     }
 }
