@@ -87,4 +87,11 @@ public class OrderService {
     public int calculateDiscountedPrice(Order order) {
         return order.calculateInitialPrice() - calculateDiscountAmount();
     }
+
+    public List<Discount> findAvailableDiscounts() {
+        return discountManager.getDiscounts()
+                .stream()
+                .filter(Discount::getIsAvailable)
+                .toList();
+    }
 }
