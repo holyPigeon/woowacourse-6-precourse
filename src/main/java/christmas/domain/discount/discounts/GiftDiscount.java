@@ -4,6 +4,7 @@ import christmas.domain.discount.Discount;
 import christmas.domain.order.Order;
 import christmas.domain.order.menu.Menu;
 import christmas.domain.order.Day;
+import christmas.domain.order.menu.MenuType;
 import christmas.domain.order.menu.Quantity;
 
 import java.util.Map;
@@ -15,9 +16,19 @@ public class GiftDiscount implements Discount {
     @Override
     public int calculateDiscountAmount(Order order, Day day) {
         if (isAvailableDiscount(order, day)) {
-            return Menu.getGiftMenu().getPrice();
+            Map<Menu, Quantity> giftMenus = Menu.getGiftMenus().getCustomerMenus();
+            return calculateTotalPrice(Order.create(giftMenus));
         }
         return 0;
+    }
+
+    private static boolean isMenuTypeDessert(Map.Entry<Menu, Quantity> entry) {
+        return entry.getKey().getType()
+                .equals(MenuType.DESSERT);
+    }
+
+    private static Integer getQuantity(Map.Entry<Menu, Quantity> entry) {
+        return entry.getValue().getPrimitiveQuantity();
     }
 
     @Override
