@@ -40,6 +40,14 @@ public class InputValidator {
     }
 
     /*
+    주문 메뉴 및 개수 입력값 전체 검증
+     */
+    public static void validateCustomerMenus(String input) {
+        validateCustomerMenusInput(input);
+        validateCustomerMenusRequest(input);
+    }
+
+    /*
     주문 메뉴 및 개수 입력값 분리 전 검증
      */
     private static void validateCustomerMenusInput(String input) {
