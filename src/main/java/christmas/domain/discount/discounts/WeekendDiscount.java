@@ -11,6 +11,9 @@ import java.time.LocalDate;
 import java.util.Map;
 
 public class WeekendDiscount implements Discount {
+
+    private final String name = "주말 할인";
+
     @Override
     public int calculateDiscountAmount(Map<Menu, Quantity> customerMenus, Day day) {
         if (isWeekday(day)) {
@@ -43,5 +46,9 @@ public class WeekendDiscount implements Discount {
     private boolean isWeekday(Day day) {
         LocalDate localDate = DateUtil.convertDayToLocalDate(day);
         return localDate.getDayOfWeek().getValue() >= 6; // 1: Monday, 2: Tuesday, ..., 7: Sunday
+    }
+
+    public String getName() {
+        return name;
     }
 }

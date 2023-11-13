@@ -8,6 +8,9 @@ import christmas.domain.order.menu.Quantity;
 import java.util.Map;
 
 public class GiftDiscount implements Discount {
+
+    private final String name = "증정 이벤트";
+
     @Override
     public int calculateDiscountAmount(Map<Menu, Quantity> customerMenus, Day day) {
         if (isAvailableDiscount(customerMenus, day)) {
@@ -34,5 +37,9 @@ public class GiftDiscount implements Discount {
 
     private static int getMenuPrice(Map.Entry<Menu, Quantity> entry) {
         return entry.getKey().getPrice();
+    }
+
+    public String getName() {
+        return name;
     }
 }

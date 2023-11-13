@@ -10,6 +10,9 @@ import java.time.LocalDate;
 import java.util.Map;
 
 public class SpecialDiscount implements Discount {
+
+    private final String name = "특별 할인";
+
     @Override
     public int calculateDiscountAmount(Map<Menu, Quantity> customerMenus, Day day) {
         if (isAvailableDiscount(customerMenus, day)) {
@@ -30,5 +33,9 @@ public class SpecialDiscount implements Discount {
 
     private boolean isChristmasDay(Day day) {
         return day.getPrimitiveDay() == 25;
+    }
+
+    public String getName() {
+        return name;
     }
 }
