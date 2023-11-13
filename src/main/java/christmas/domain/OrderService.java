@@ -80,4 +80,11 @@ public class OrderService {
                 .mapToInt(Discount::getDiscountAmount)
                 .sum();
     }
+
+    /*
+    할인 후 예상 금액
+     */
+    public int calculateDiscountedPrice(Order order) {
+        return order.calculateInitialPrice() - calculateDiscountAmount();
+    }
 }
