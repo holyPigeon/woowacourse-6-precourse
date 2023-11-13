@@ -1,7 +1,6 @@
 package christmas.domain.order;
 
 import christmas.domain.order.menu.Menu;
-import christmas.domain.order.menu.MenuType;
 import christmas.domain.order.menu.Quantity;
 import christmas.validator.OrderValidator;
 
@@ -36,5 +35,9 @@ public class Order {
 
     private int getMenuPrice(Map.Entry<Menu, Quantity> entry) {
         return entry.getKey().getPrice();
+    }
+
+    public Badge calculateBadge() {
+        return Badge.calculateBadge(calculateInitialPrice());
     }
 }
