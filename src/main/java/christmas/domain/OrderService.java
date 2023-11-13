@@ -70,4 +70,14 @@ public class OrderService {
                 .map(AvailableDiscountResponse::from)
                 .toList();
     }
+
+    /*
+    총혜택 금액
+     */
+    public int calculateDiscountAmount() {
+        return findAvailableDiscounts()
+                .stream()
+                .mapToInt(Discount::getDiscountAmount)
+                .sum();
+    }
 }
