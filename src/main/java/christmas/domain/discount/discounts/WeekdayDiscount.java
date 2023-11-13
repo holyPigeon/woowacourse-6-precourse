@@ -1,6 +1,7 @@
 package christmas.domain.discount.discounts;
 
 import christmas.domain.discount.Discount;
+import christmas.domain.order.Order;
 import christmas.domain.order.menu.Menu;
 import christmas.domain.order.menu.MenuType;
 import christmas.domain.order.Day;
@@ -15,15 +16,17 @@ public class WeekdayDiscount implements Discount {
     private final String name = "평일 할인";
 
     @Override
-    public int calculateDiscountAmount(Map<Menu, Quantity> customerMenus, Day day) {
+    public int calculateDiscountAmount(Order order, Day day) {
         if (isWeekday(day)) {
-            return findDiscountableMenuCount(customerMenus) * 2023;
+            return findDiscountableMenuCount(order) * 2023;
         }
         return 0;
     }
 
-    private static int findDiscountableMenuCount(Map<Menu, Quantity> customerMenus) {
-        return customerMenus.entrySet().stream()
+    private static int findDiscountableMenuCount(Order order) {
+        return order.getCustomerMenus()
+                .entrySet()
+                .stream()
                 .filter(WeekdayDiscount::isMenuTypeDessert)
                 .mapToInt(WeekdayDiscount::getQuantity)
                 .sum();
@@ -38,7 +41,7 @@ public class WeekdayDiscount implements Discount {
     }
 
     @Override
-    public boolean isAvailableDiscount(Map<Menu, Quantity> customerMenus, Day day) {
+    public boolean isAvailableDiscount(Order order, Day day) {
         return isWeekday(day);
     }
 
