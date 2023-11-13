@@ -33,6 +33,14 @@ public class InputValidator {
         }
     }
 
+    /*
+    주문 메뉴 및 개수 입력값 검증
+     */
+    public static void validateCustomerMenus(String input) {
+        validateIsBlank(input);
+        validateIsRightFormat(input);
+    }
+
     private static void validateIsRightFormat(String input) {
         if (!isRightFormat(input)) {
             throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
