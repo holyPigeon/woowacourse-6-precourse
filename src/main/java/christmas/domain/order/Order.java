@@ -22,4 +22,19 @@ public class Order {
         OrderValidator.validateHasOnlyDrink(customerMenus);
         OrderValidator.validateIsTotalQuantityValid(customerMenus);
     }
+
+    public int calculateInitialPrice() {
+        return customerMenus.entrySet()
+                .stream()
+                .mapToInt(entry -> getMenuPrice(entry) * getEachQuantity(entry))
+                .sum();
+    }
+
+    private Integer getEachQuantity(Map.Entry<Menu, Quantity> entry) {
+        return entry.getValue().getPrimitiveQuantity();
+    }
+
+    private int getMenuPrice(Map.Entry<Menu, Quantity> entry) {
+        return entry.getKey().getPrice();
+    }
 }
