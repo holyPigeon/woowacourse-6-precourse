@@ -1,5 +1,9 @@
 package christmas.domain.order.menu;
 
+import christmas.domain.order.Order;
+
+import java.util.Map;
+
 public enum Menu {
 
     // 기타
@@ -36,11 +40,18 @@ public enum Menu {
     }
 
     public static boolean isGiftMenu(Menu menu) {
-        return menu.equals(getGiftMenu());
+        return getGiftMenus()
+                .getCustomerMenus()
+                .keySet()
+                .stream()
+                .anyMatch(giftMenu -> giftMenu.equals(menu));
     }
 
-    public static Menu getGiftMenu() {
-        return Menu.CHAMPAGNE;
+    public static Order getGiftMenus() {
+        return Order.create(Map.of(
+                        Menu.CHAMPAGNE, Quantity.create(1)
+                )
+        );
     }
 
     public String getName() {
