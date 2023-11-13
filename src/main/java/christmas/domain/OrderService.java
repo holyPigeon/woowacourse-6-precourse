@@ -3,6 +3,9 @@ package christmas.domain;
 import christmas.domain.discount.DiscountManager;
 import christmas.domain.order.Day;
 import christmas.domain.order.Order;
+import christmas.domain.order.menu.Menu;
+import christmas.domain.order.menu.Quantity;
+import christmas.dto.response.GiftMenuResponse;
 import christmas.dto.response.OrderedMenuResponse;
 
 import java.util.List;
@@ -31,5 +34,21 @@ public class OrderService {
      */
     public int calculateInitialPrice(Order order) {
         return order.calculateInitialPrice();
+    }
+
+    /*
+    증정 메뉴 리스트
+     */
+    public List<GiftMenuResponse> findGiftMenuResponses() {
+        if (hasGiftDiscount()) {
+            return Menu.getGiftMenus()
+                    .entrySet()
+                    .stream()
+                    .map(entry -> GiftMenuResponse.of(entry.getKey(), entry.getValue()))
+                    .toList();
+        }
+        return List.of(
+                GiftMenuResponse.of(Menu.NONE, Quantity.create(1))
+        );
     }
 }
