@@ -12,14 +12,27 @@ import java.util.Map;
 public class GiftDiscount implements Discount {
 
     private final String name = "증정 이벤트";
+    private int discountAmount = 0;
+    private boolean isAvailable = false;
+
+    private GiftDiscount(Order order, Day day) {
+        checkIsAvailableDiscount(order, day);
+        calculateDiscountAmount(order, day);
+    }
+
+    public static GiftDiscount of(Order order, Day day) {
+        return new GiftDiscount(order, day);
+    }
 
     @Override
-    public int calculateDiscountAmount(Order order, Day day) {
-        if (isAvailableDiscount(order, day)) {
-            Map<Menu, Quantity> giftMenus = Menu.getGiftMenus().getCustomerMenus();
-            return calculateTotalPrice(Order.create(giftMenus));
+    public void calculateDiscountAmount(Order order, Day day) {
+        if (isAvailable) {
+            discountAmount = Menu.getGiftMenus()
+                    .entrySet()
+                    .stream()
+                    .mapToInt(entry -> getMenuPrice(entry) * getEachQuantity(entry))
+                    .sum();
         }
-        return 0;
     }
 
     private static boolean isMenuTypeDessert(Map.Entry<Menu, Quantity> entry) {
@@ -32,8 +45,8 @@ public class GiftDiscount implements Discount {
     }
 
     @Override
-    public boolean isAvailableDiscount(Order order, Day day) {
-        return calculateTotalPrice(order) >= 120000;
+    public void checkIsAvailableDiscount(Order order, Day day) {
+        isAvailable = calculateTotalPrice(order) >= 120000;
     }
 
     private static int calculateTotalPrice(Order order) {
@@ -54,5 +67,13 @@ public class GiftDiscount implements Discount {
 
     public String getName() {
         return name;
+    }
+
+    public int getDiscountAmount() {
+        return discountAmount;
+    }
+
+    public boolean getIsAvailable() {
+        return isAvailable;
     }
 }

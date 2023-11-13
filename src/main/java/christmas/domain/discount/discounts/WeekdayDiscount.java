@@ -14,13 +14,23 @@ import java.util.Map;
 public class WeekdayDiscount implements Discount {
 
     private final String name = "평일 할인";
+    private int discountAmount = 0;
+    private boolean isAvailable = false;
+
+    private WeekdayDiscount(Order order, Day day) {
+        checkIsAvailableDiscount(order, day);
+        calculateDiscountAmount(order, day);
+    }
+
+    public static WeekdayDiscount of(Order order, Day day) {
+        return new WeekdayDiscount(order, day);
+    }
 
     @Override
-    public int calculateDiscountAmount(Order order, Day day) {
-        if (isWeekday(day)) {
-            return findDiscountableMenuCount(order) * 2023;
+    public void calculateDiscountAmount(Order order, Day day) {
+        if (isAvailable) {
+            discountAmount = findDiscountableMenuCount(order) * 2023;
         }
-        return 0;
     }
 
     private static int findDiscountableMenuCount(Order order) {
@@ -41,8 +51,8 @@ public class WeekdayDiscount implements Discount {
     }
 
     @Override
-    public boolean isAvailableDiscount(Order order, Day day) {
-        return isWeekday(day);
+    public void checkIsAvailableDiscount(Order order, Day day) {
+        isAvailable = isWeekday(day);
     }
 
     private boolean isWeekday(Day day) {
@@ -53,4 +63,13 @@ public class WeekdayDiscount implements Discount {
     public String getName() {
         return name;
     }
+
+    public int getDiscountAmount() {
+        return discountAmount;
+    }
+
+    public boolean getIsAvailable() {
+        return isAvailable;
+    }
+
 }

@@ -10,18 +10,28 @@ import java.time.LocalDate;
 public class SpecialDiscount implements Discount {
 
     private final String name = "특별 할인";
+    private int discountAmount = 0;
+    private boolean isAvailable = false;
 
-    @Override
-    public int calculateDiscountAmount(Order order, Day day) {
-        if (isAvailableDiscount(order, day)) {
-            return 1000;
-        }
-        return 0;
+    private SpecialDiscount(Order order, Day day) {
+        checkIsAvailableDiscount(order, day);
+        calculateDiscountAmount(order, day);
+    }
+
+    public static SpecialDiscount of(Order order, Day day) {
+        return new SpecialDiscount(order, day);
     }
 
     @Override
-    public boolean isAvailableDiscount(Order order, Day day) {
-        return isSunday(day) || isChristmasDay(day);
+    public void calculateDiscountAmount(Order order, Day day) {
+        if (isAvailable) {
+            discountAmount = 1000;
+        }
+    }
+
+    @Override
+    public void checkIsAvailableDiscount(Order order, Day day) {
+        isAvailable = isSunday(day) || isChristmasDay(day);
     }
 
     private boolean isSunday(Day day) {
@@ -36,4 +46,13 @@ public class SpecialDiscount implements Discount {
     public String getName() {
         return name;
     }
+
+    public int getDiscountAmount() {
+        return discountAmount;
+    }
+
+    public boolean getIsAvailable() {
+        return isAvailable;
+    }
+
 }
