@@ -2,6 +2,9 @@ package christmas.domain.order.menu;
 
 public enum Menu {
 
+    // 기타
+    NONE("없음", 0, MenuType.NONE),
+
     // 에피타이저
     MUSHROOM_SOUP("양송이 스프", 6_000, MenuType.APPETIZER),
     TAPAS("타파스", 5_500, MenuType.APPETIZER),
