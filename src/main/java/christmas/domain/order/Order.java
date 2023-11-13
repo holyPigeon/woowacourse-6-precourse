@@ -11,9 +11,13 @@ public class Order {
 
     Map<Menu, Quantity> customerMenus = new EnumMap<>(Menu.class);
 
-    public Order(Map<Menu, Quantity> customerMenus) {
+    private Order(Map<Menu, Quantity> customerMenus) {
         validate(customerMenus);
         this.customerMenus = customerMenus;
+    }
+
+    public static Order create(Map<Menu, Quantity> customerMenus) {
+        return new Order(customerMenus);
     }
 
     private void validate(Map<Menu, Quantity> customerMenus) {

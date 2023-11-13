@@ -6,9 +6,13 @@ public class Day {
 
     private Integer day;
 
-    public Day(Integer day) {
+    private Day(Integer day) {
         validate(day);
         this.day = day;
+    }
+
+    public static Day create(Integer day) {
+        return new Day(day);
     }
 
     private void validate(Integer day) {

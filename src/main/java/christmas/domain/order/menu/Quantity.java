@@ -6,9 +6,13 @@ public class Quantity {
 
     private Integer quantity;
 
-    public Quantity(Integer quantity) {
+    private Quantity(Integer quantity) {
         validate(quantity);
         this.quantity = quantity;
+    }
+
+    public static Quantity create(Integer quantity) {
+        return new Quantity(quantity);
     }
 
     private void validate(Integer quantity) {
