@@ -3,6 +3,7 @@ package christmas.domain;
 import christmas.domain.discount.Discount;
 import christmas.domain.discount.DiscountManager;
 import christmas.domain.discount.discounts.GiftDiscount;
+import christmas.domain.order.Badge;
 import christmas.domain.order.Day;
 import christmas.domain.order.Order;
 import christmas.domain.order.menu.Menu;
@@ -82,7 +83,7 @@ public class OrderService {
     }
 
     /*
-    할인 후 예상 금액
+    할인 후 예상 결제 금액
      */
     public int calculateDiscountedPrice(Order order) {
         return order.calculateInitialPrice() - calculateDiscountAmount();
@@ -93,5 +94,12 @@ public class OrderService {
                 .stream()
                 .filter(Discount::getIsAvailable)
                 .toList();
+    }
+
+    /*
+    배지
+     */
+    public Badge calculateBadge(Order order) {
+        return order.calculateBadge();
     }
 }
