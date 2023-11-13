@@ -32,6 +32,14 @@ public enum Menu {
         this.type = type;
     }
 
+    public static boolean isGiftMenu(Menu menu) {
+        return menu.equals(getGiftMenu());
+    }
+
+    public static Menu getGiftMenu() {
+        return Menu.CHAMPAGNE;
+    }
+
     public String getName() {
         return name;
     }
