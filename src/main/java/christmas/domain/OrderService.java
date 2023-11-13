@@ -3,6 +3,9 @@ package christmas.domain;
 import christmas.domain.discount.DiscountManager;
 import christmas.domain.order.Day;
 import christmas.domain.order.Order;
+import christmas.dto.response.OrderedMenuResponse;
+
+import java.util.List;
 
 public class OrderService {
 
@@ -14,5 +17,12 @@ public class OrderService {
 
     public static OrderService create(Order order, Day day) {
         return new OrderService(order, day);
+    }
+
+    /*
+    주문 메뉴 리스트
+     */
+    public List<OrderedMenuResponse> findOrderedMenus(Order order) {
+        return order.findOrderedMenus();
     }
 }
