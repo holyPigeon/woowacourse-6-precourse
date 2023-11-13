@@ -25,4 +25,11 @@ public class OrderService {
     public List<OrderedMenuResponse> findOrderedMenus(Order order) {
         return order.findOrderedMenus();
     }
+
+    /*
+    할인 전 총주문 금액
+     */
+    public int calculateInitialPrice(Order order) {
+        return order.calculateInitialPrice();
+    }
 }
