@@ -41,16 +41,14 @@ public enum Menu {
 
     public static boolean isGiftMenu(Menu menu) {
         return getGiftMenus()
-                .getCustomerMenus()
                 .keySet()
                 .stream()
                 .anyMatch(giftMenu -> giftMenu.equals(menu));
     }
 
-    public static Order getGiftMenus() {
-        return Order.create(Map.of(
-                        Menu.CHAMPAGNE, Quantity.create(1)
-                )
+    public static Map<Menu, Quantity> getGiftMenus() {
+        return Map.of(
+                Menu.CHAMPAGNE, Quantity.create(1)
         );
     }
 
