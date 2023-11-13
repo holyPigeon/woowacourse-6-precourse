@@ -1,11 +1,13 @@
 package christmas.domain;
 
+import christmas.domain.discount.Discount;
 import christmas.domain.discount.DiscountManager;
 import christmas.domain.discount.discounts.GiftDiscount;
 import christmas.domain.order.Day;
 import christmas.domain.order.Order;
 import christmas.domain.order.menu.Menu;
 import christmas.domain.order.menu.Quantity;
+import christmas.dto.response.AvailableDiscountResponse;
 import christmas.dto.response.GiftMenuResponse;
 import christmas.dto.response.OrderedMenuResponse;
 
@@ -57,5 +59,15 @@ public class OrderService {
         return findAvailableDiscounts()
                 .stream()
                 .anyMatch(discount -> discount instanceof GiftDiscount);
+    }
+
+    /*
+    혜택 내역 리스트
+     */
+    public List<AvailableDiscountResponse> findAvailableDiscountResponses() {
+        return findAvailableDiscounts()
+                .stream()
+                .map(AvailableDiscountResponse::from)
+                .toList();
     }
 }
