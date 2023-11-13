@@ -15,7 +15,7 @@ public class GiftDiscount implements Discount {
     @Override
     public int calculateDiscountAmount(Order order, Day day) {
         if (isAvailableDiscount(order, day)) {
-            return 25000;
+            return Menu.getGiftMenu().getPrice();
         }
         return 0;
     }
