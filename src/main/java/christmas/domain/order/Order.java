@@ -2,9 +2,11 @@ package christmas.domain.order;
 
 import christmas.domain.order.menu.Menu;
 import christmas.domain.order.menu.Quantity;
+import christmas.dto.response.OrderedMenuResponse;
 import christmas.validator.OrderValidator;
 
 import java.util.EnumMap;
+import java.util.List;
 import java.util.Map;
 
 public class Order {
@@ -26,8 +28,17 @@ public class Order {
         OrderValidator.validateIsTotalQuantityValid(customerMenus);
     }
 
+    public List<OrderedMenuResponse> findOrderedMenus() {
+        return customerMenus
+                .entrySet()
+                .stream()
+                .map(entry -> OrderedMenuResponse.of(entry.getKey(), entry.getValue()))
+                .toList();
+    }
+
     public int calculateInitialPrice() {
-        return customerMenus.entrySet()
+        return customerMenus
+                .entrySet()
                 .stream()
                 .mapToInt(entry -> getMenuPrice(entry) * getEachQuantity(entry))
                 .sum();
