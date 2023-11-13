@@ -1,6 +1,7 @@
 package christmas.domain;
 
 import christmas.domain.discount.DiscountManager;
+import christmas.domain.discount.discounts.GiftDiscount;
 import christmas.domain.order.Day;
 import christmas.domain.order.Order;
 import christmas.domain.order.menu.Menu;
@@ -50,5 +51,11 @@ public class OrderService {
         return List.of(
                 GiftMenuResponse.of(Menu.NONE, Quantity.create(1))
         );
+    }
+
+    public boolean hasGiftDiscount() {
+        return findAvailableDiscounts()
+                .stream()
+                .anyMatch(discount -> discount instanceof GiftDiscount);
     }
 }
