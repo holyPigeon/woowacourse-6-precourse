@@ -8,8 +8,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import static java.lang.Integer.parseInt;
-
 public class InputValidator {
 
     private InputValidator() {
@@ -32,7 +30,7 @@ public class InputValidator {
 
     private static boolean isDigit(String input) {
         try {
-            parseInt(input);
+            Integer.parseInt(input);
             return true;
         } catch (NumberFormatException e) {
             return false;
@@ -74,6 +72,7 @@ public class InputValidator {
     private static void validateCustomerMenusRequest(String input) {
         List<CustomerMenuRequest> customerMenuRequests = InputUtil.parseCustomerMenus(input);
         validateIsExistingMenu(customerMenuRequests);
+        validateHasDuplicatedMenu(customerMenuRequests);
     }
 
     private static void validateIsExistingMenu(List<CustomerMenuRequest> menuRequests) {

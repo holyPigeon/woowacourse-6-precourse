@@ -26,7 +26,6 @@ public class Order {
     }
 
     private void validate(Map<Menu, Quantity> customerMenus) {
-        OrderValidator.validateHasDuplicateMenu(customerMenus);
         OrderValidator.validateHasOnlyDrink(customerMenus);
         OrderValidator.validateIsTotalQuantityValid(customerMenus);
     }
