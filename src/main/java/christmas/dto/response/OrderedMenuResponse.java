@@ -16,4 +16,12 @@ public class OrderedMenuResponse {
     public static OrderedMenuResponse of(Menu menu, Quantity quantity) {
         return new OrderedMenuResponse(menu, quantity);
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
 }
