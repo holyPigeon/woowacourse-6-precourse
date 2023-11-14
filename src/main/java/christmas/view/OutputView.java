@@ -2,6 +2,7 @@ package christmas.view;
 
 import christmas.dto.response.OrderedMenuResponse;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class OutputView {
@@ -21,5 +22,11 @@ public class OutputView {
     public static void printOrderedMenusMessage(List<OrderedMenuResponse> orderedMenus) {
         System.out.println();
         orderedMenus.forEach(orderedMenu -> System.out.printf("%s %d개", orderedMenu.getName(), orderedMenu.getQuantity()));
+    }
+
+    public static void printInitialPriceMessage(int initialPrice) {
+        System.out.println();
+        DecimalFormat decimalFormat = new DecimalFormat("###,###");
+        System.out.printf("%s원", decimalFormat.format(initialPrice));
     }
 }
