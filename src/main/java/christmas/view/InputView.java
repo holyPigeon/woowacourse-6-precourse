@@ -2,7 +2,7 @@ package christmas.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import christmas.dto.request.CustomerMenuRequest;
-import christmas.parser.InputParser;
+import christmas.util.InputUtil;
 import christmas.validator.InputValidator;
 
 import java.util.List;
@@ -26,6 +26,6 @@ public class InputView {
         String input = Console.readLine();
         InputValidator.validateCustomerMenus(input);
 
-        return InputParser.parseCustomerMenus(input);
+        return InputUtil.parseCustomerMenus(input);
     }
 }

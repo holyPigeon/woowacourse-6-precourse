@@ -2,7 +2,7 @@ package christmas.validator;
 
 import christmas.domain.order.menu.Menu;
 import christmas.dto.request.CustomerMenuRequest;
-import christmas.parser.InputParser;
+import christmas.util.InputUtil;
 
 import java.util.Arrays;
 import java.util.List;
@@ -72,7 +72,7 @@ public class InputValidator {
     주문 메뉴 및 개수 입력값 분리 후 검증
      */
     private static void validateCustomerMenusRequest(String input) {
-        List<CustomerMenuRequest> customerMenuRequests = InputParser.parseCustomerMenus(input);
+        List<CustomerMenuRequest> customerMenuRequests = InputUtil.parseCustomerMenus(input);
         validateIsExistingMenu(customerMenuRequests);
     }
 

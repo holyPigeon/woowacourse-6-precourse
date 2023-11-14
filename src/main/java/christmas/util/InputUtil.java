@@ -1,14 +1,17 @@
-package christmas.parser;
+package christmas.util;
 
+import christmas.domain.order.menu.Menu;
+import christmas.domain.order.menu.Quantity;
 import christmas.dto.request.CustomerMenuRequest;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Stream;
 
-public class InputParser {
+public class InputUtil {
 
-    private InputParser() {
+    private InputUtil() {
 
     }
 
