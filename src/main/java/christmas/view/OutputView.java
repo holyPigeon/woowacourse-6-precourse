@@ -1,5 +1,6 @@
 package christmas.view;
 
+import christmas.domain.order.Badge;
 import christmas.dto.response.AvailableDiscountResponse;
 import christmas.dto.response.GiftMenuResponse;
 import christmas.dto.response.OrderedMenuResponse;
@@ -53,5 +54,10 @@ public class OutputView {
         System.out.println();
         DecimalFormat decimalFormat = new DecimalFormat("###,###");
         System.out.printf("%s원", decimalFormat.format(discountedPrice));
+    }
+
+    public static void printBadgeMessage(Badge badge) {
+        System.out.println();
+        System.out.print(badge.getName());
     }
 }
