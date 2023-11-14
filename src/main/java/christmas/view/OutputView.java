@@ -48,4 +48,10 @@ public class OutputView {
         DecimalFormat decimalFormat = new DecimalFormat("###,###");
         System.out.printf("-%s원", decimalFormat.format(discountAmount));
     }
+
+    public static void printDiscountedPriceMessage(int discountedPrice) {
+        System.out.println();
+        DecimalFormat decimalFormat = new DecimalFormat("###,###");
+        System.out.printf("%s원", decimalFormat.format(discountedPrice));
+    }
 }
