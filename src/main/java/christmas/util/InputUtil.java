@@ -34,7 +34,7 @@ public class InputUtil {
     public static Map<Menu, Quantity> parseCustomerMenuRequests(List<CustomerMenuRequest> customerMenuRequests) {
         return customerMenuRequests.stream()
                 .collect(Collectors.toMap(
-                        request -> Menu.valueOf(request.getMenuName()),
+                        request -> Menu.findByName(request.getMenuName()),
                         request -> Quantity.create(request.getQuantity())
                 ));
     }
