@@ -13,12 +13,12 @@ public class InputView {
 
     }
 
-    public static String readEstimatedVisitingDate() {
+    public static Integer readEstimatedVisitingDate() {
         System.out.println("12월 중 식당 예상 방문 날짜는 언제인가요? (숫자만 입력해 주세요!)");
         String input = Console.readLine();
         InputValidator.validateEstimatedVisitingDateInput(input);
 
-        return input;
+        return Integer.parseInt(input);
     }
 
     public static List<CustomerMenuRequest> readCustomerMenus() {
