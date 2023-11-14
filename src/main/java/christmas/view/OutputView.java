@@ -1,5 +1,6 @@
 package christmas.view;
 
+import christmas.dto.response.AvailableDiscountResponse;
 import christmas.dto.response.GiftMenuResponse;
 import christmas.dto.response.OrderedMenuResponse;
 
@@ -34,5 +35,11 @@ public class OutputView {
     public static void printGiftMenusMessage(List<GiftMenuResponse> giftMenus) {
         System.out.println();
         giftMenus.forEach(giftMenu -> System.out.printf("%s %d개", giftMenu.getName(), giftMenu.getQuantity()));
+    }
+
+    public static void printAvailableDiscountsMessage(List<AvailableDiscountResponse> availableDiscounts) {
+        System.out.println();
+        DecimalFormat decimalFormat = new DecimalFormat("###,###");
+        availableDiscounts.forEach(availableDiscount -> System.out.printf("%s: -%s", availableDiscount.getName(), decimalFormat.format(availableDiscount.getDiscountAmount())));
     }
 }
