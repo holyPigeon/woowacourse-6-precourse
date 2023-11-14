@@ -7,6 +7,7 @@ import christmas.dto.request.CustomerMenuRequest;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class InputUtil {
@@ -28,5 +29,13 @@ public class InputUtil {
 
     private static Stream<String> getEachMenu(String input) {
         return Arrays.stream(input.split(","));
+    }
+
+    public static Map<Menu, Quantity> parseCustomerMenuRequests(List<CustomerMenuRequest> customerMenuRequests) {
+        return customerMenuRequests.stream()
+                .collect(Collectors.toMap(
+                        request -> Menu.valueOf(request.getMenuName()),
+                        request -> Quantity.create(request.getQuantity())
+                ));
     }
 }
