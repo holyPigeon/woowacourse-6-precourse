@@ -42,4 +42,10 @@ public class OutputView {
         DecimalFormat decimalFormat = new DecimalFormat("###,###");
         availableDiscounts.forEach(availableDiscount -> System.out.printf("%s: -%s", availableDiscount.getName(), decimalFormat.format(availableDiscount.getDiscountAmount())));
     }
+
+    public static void printDiscountAmountMessage(int discountAmount) {
+        System.out.println();
+        DecimalFormat decimalFormat = new DecimalFormat("###,###");
+        System.out.printf("-%s원", decimalFormat.format(discountAmount));
+    }
 }
