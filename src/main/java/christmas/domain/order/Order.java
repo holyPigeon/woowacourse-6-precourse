@@ -2,7 +2,9 @@ package christmas.domain.order;
 
 import christmas.domain.order.menu.Menu;
 import christmas.domain.order.menu.Quantity;
+import christmas.dto.request.CustomerMenuRequest;
 import christmas.dto.response.OrderedMenuResponse;
+import christmas.util.InputUtil;
 import christmas.validator.OrderValidator;
 
 import java.util.EnumMap;
@@ -13,13 +15,14 @@ public class Order {
 
     Map<Menu, Quantity> customerMenus = new EnumMap<>(Menu.class);
 
-    private Order(Map<Menu, Quantity> customerMenus) {
+    private Order(List<CustomerMenuRequest> customerMenuRequests) {
+        Map<Menu, Quantity> customerMenus = InputUtil.parseCustomerMenuRequests(customerMenuRequests);
         validate(customerMenus);
         this.customerMenus = customerMenus;
     }
 
-    public static Order create(Map<Menu, Quantity> customerMenus) {
-        return new Order(customerMenus);
+    public static Order create(List<CustomerMenuRequest> customerMenuRequests) {
+        return new Order(customerMenuRequests);
     }
 
     private void validate(Map<Menu, Quantity> customerMenus) {
