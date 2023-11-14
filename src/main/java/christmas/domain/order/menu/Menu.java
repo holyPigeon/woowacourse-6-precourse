@@ -1,7 +1,6 @@
 package christmas.domain.order.menu;
 
-import christmas.domain.order.Order;
-
+import java.util.Arrays;
 import java.util.Map;
 
 public enum Menu {
@@ -37,6 +36,13 @@ public enum Menu {
         this.name = name;
         this.price = price;
         this.type = type;
+    }
+
+    public static Menu findByName(String name) {
+        return Arrays.stream(values())
+                .filter(menu -> menu.name.equalsIgnoreCase(name))
+                .findFirst()
+                .orElse(Menu.NONE);
     }
 
     public static boolean isGiftMenu(Menu menu) {
