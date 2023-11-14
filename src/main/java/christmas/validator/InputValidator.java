@@ -24,7 +24,7 @@ public class InputValidator {
 
     private static void validateIsDigit(String input) {
         if (!isDigit(input)) {
-            throw new IllegalArgumentException("[ERROR] 입력값은 정수이어야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
         }
     }
 
@@ -112,7 +112,7 @@ public class InputValidator {
      */
     private static void validateIsBlank(String input) {
         if (input.isBlank()) {
-            throw new IllegalArgumentException("[ERROR] 입력값은 비어있지 않아야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
         }
     }
 }
