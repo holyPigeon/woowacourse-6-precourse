@@ -100,6 +100,6 @@ public class PreviewService {
     배지
      */
     public Badge calculateBadge(Order order) {
-        return order.calculateBadge();
+        return Badge.calculateBadge(calculateDiscountAmount());
     }
 }

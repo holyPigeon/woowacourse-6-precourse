@@ -54,10 +54,6 @@ public class Order {
         return entry.getKey().getPrice();
     }
 
-    public Badge calculateBadge() {
-        return Badge.calculateBadge(calculateInitialPrice());
-    }
-
     public Map<Menu, Quantity> getCustomerMenus() {
         return new EnumMap<>(customerMenus);
     }
