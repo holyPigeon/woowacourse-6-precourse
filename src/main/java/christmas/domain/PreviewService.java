@@ -14,16 +14,16 @@ import christmas.dto.response.OrderedMenuResponse;
 
 import java.util.List;
 
-public class OrderService {
+public class PreviewService {
 
     private final DiscountManager discountManager;
 
-    private OrderService(Order order, Day day) {
+    private PreviewService(Order order, Day day) {
         this.discountManager = DiscountManager.create(order, day);
     }
 
-    public static OrderService create(Order order, Day day) {
-        return new OrderService(order, day);
+    public static PreviewService create(Order order, Day day) {
+        return new PreviewService(order, day);
     }
 
     /*
