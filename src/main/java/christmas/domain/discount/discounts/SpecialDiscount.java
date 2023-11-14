@@ -31,7 +31,7 @@ public class SpecialDiscount implements Discount {
 
     @Override
     public void checkIsAvailableDiscount(Order order, Day day) {
-        isAvailable = isSunday(day) || isChristmasDay(day);
+        isAvailable = (isSunday(day) || isChristmasDay(day)) && isValidPrice(order) ;
     }
 
     private boolean isSunday(Day day) {
@@ -41,6 +41,10 @@ public class SpecialDiscount implements Discount {
 
     private boolean isChristmasDay(Day day) {
         return day.getPrimitiveDay() == 25;
+    }
+
+    private static boolean isValidPrice(Order order) {
+        return order.calculateInitialPrice() > 10000;
     }
 
     public String getName() {

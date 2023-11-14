@@ -46,15 +46,7 @@ public class GiftDiscount implements Discount {
 
     @Override
     public void checkIsAvailableDiscount(Order order, Day day) {
-        isAvailable = calculateTotalPrice(order) >= 120000;
-    }
-
-    private static int calculateTotalPrice(Order order) {
-        return order.getCustomerMenus()
-                .entrySet()
-                .stream()
-                .mapToInt(entry -> getMenuPrice(entry) * getEachQuantity(entry))
-                .sum();
+        isAvailable = order.calculateInitialPrice() >= 120000;
     }
 
     private static Integer getEachQuantity(Map.Entry<Menu, Quantity> entry) {

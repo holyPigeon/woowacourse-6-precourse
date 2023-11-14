@@ -28,7 +28,15 @@ public class DdayDiscount implements Discount {
 
     @Override
     public void checkIsAvailableDiscount(Order order, Day day) {
-        isAvailable = day.getPrimitiveDay() >= 1 && day.getPrimitiveDay() <= 25;
+        isAvailable = isEventPeriod(day) && isValidPrice(order);
+    }
+
+    private static boolean isEventPeriod(Day day) {
+        return day.getPrimitiveDay() >= 1 && day.getPrimitiveDay() <= 25;
+    }
+
+    private static boolean isValidPrice(Order order) {
+        return order.calculateInitialPrice() > 10000;
     }
 
     public String getName() {

@@ -52,7 +52,11 @@ public class WeekdayDiscount implements Discount {
 
     @Override
     public void checkIsAvailableDiscount(Order order, Day day) {
-        isAvailable = isWeekday(day);
+        isAvailable = isValidPrice(order) && isWeekday(day);
+    }
+
+    private static boolean isValidPrice(Order order) {
+        return order.calculateInitialPrice() > 10000;
     }
 
     private boolean isWeekday(Day day) {
