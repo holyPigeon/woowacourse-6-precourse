@@ -1,6 +1,5 @@
 package christmas.domain;
 
-import christmas.domain.discount.Discount;
 import christmas.domain.discount.DiscountManager;
 import christmas.domain.order.Badge;
 import christmas.domain.order.Day;

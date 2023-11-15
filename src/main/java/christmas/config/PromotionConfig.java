@@ -17,7 +17,7 @@ public enum PromotionConfig {
     }
 
     public static boolean isDayInRange(Integer day) {
-        return day > MINIMUM_DAY.number  || day < MAXIMUM_DAY.number;
+        return day >= MINIMUM_DAY.number  || day <= MAXIMUM_DAY.number;
     }
 
     public static boolean isTotalQuantityGreaterThanCondition(int totalQuantity) {
