@@ -3,6 +3,7 @@ package christmas.validator;
 import christmas.domain.order.menu.Menu;
 import christmas.dto.request.CustomerMenuRequest;
 import christmas.util.InputUtil;
+import christmas.exception.ErrorMessage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -20,21 +21,6 @@ public class InputValidator {
     public static void validateEstimatedVisitingDateInput(String input) {
         validateIsBlank(input);
         validateIsDigit(input);
-    }
-
-    private static void validateIsDigit(String input) {
-        if (!isDigit(input)) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
-        }
-    }
-
-    private static boolean isDigit(String input) {
-        try {
-            Integer.parseInt(input);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
     }
 
     /*
@@ -55,7 +41,7 @@ public class InputValidator {
 
     private static void validateIsRightFormat(String input) {
         if (!isRightFormat(input)) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_ORDER.getMessage());
         }
     }
 
@@ -77,7 +63,7 @@ public class InputValidator {
 
     private static void validateIsExistingMenu(List<CustomerMenuRequest> menuRequests) {
         if (!isExistingMenu(menuRequests)) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_ORDER.getMessage());
         }
     }
 
@@ -96,7 +82,7 @@ public class InputValidator {
 
     private static void validateHasDuplicatedMenu(List<CustomerMenuRequest> menuRequests) {
         if (hasDuplicatedMenu(menuRequests)) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_ORDER.getMessage());
         }
     }
 
@@ -112,7 +98,22 @@ public class InputValidator {
      */
     private static void validateIsBlank(String input) {
         if (input.isBlank()) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException(ErrorMessage.INPUT_IS_BLANK.getMessage());
+        }
+    }
+
+    private static void validateIsDigit(String input) {
+        if (!isDigit(input)) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_DATE.getMessage());
+        }
+    }
+
+    private static boolean isDigit(String input) {
+        try {
+            Integer.parseInt(input);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
         }
     }
 }

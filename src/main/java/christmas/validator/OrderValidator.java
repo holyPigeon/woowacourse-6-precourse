@@ -3,6 +3,7 @@ package christmas.validator;
 import christmas.domain.order.menu.Menu;
 import christmas.domain.order.menu.MenuType;
 import christmas.domain.order.menu.Quantity;
+import christmas.exception.ErrorMessage;
 
 import java.util.Map;
 
@@ -13,7 +14,7 @@ public class OrderValidator {
      */
     public static void validateHasOnlyDrink(Map<Menu, Quantity> customerMenus) {
         if (hasOnlyDrink(customerMenus)) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_ORDER.getMessage());
         }
     }
 
@@ -25,7 +26,7 @@ public class OrderValidator {
 
     public static void validateIsTotalQuantityValid(Map<Menu, Quantity> customerMenus) {
         if (calculateTotalQuantity(customerMenus) > 20) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_ORDER.getMessage());
         }
     }
 
@@ -41,7 +42,7 @@ public class OrderValidator {
      */
     public static void validateIsGreaterThanCondition(Integer quantity) {
         if (quantity < 1) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_ORDER.getMessage());
         }
     }
 
@@ -50,7 +51,7 @@ public class OrderValidator {
      */
     public static void validateIsDateInRange(Integer day) {
         if (isNumberInRange(day)) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_ORDER.getMessage());
         }
     }
 
