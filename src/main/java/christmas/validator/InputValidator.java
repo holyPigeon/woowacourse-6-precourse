@@ -27,14 +27,14 @@ public class InputValidator {
     주문 메뉴 및 개수 입력값 전체 검증
      */
     public static void validateOrder(String input) {
-        validateCustomerOrderInput(input);
-        validateCustomerOrderRequest(input);
+        validateOrderInput(input);
+        validateOrderRequest(input);
     }
 
     /*
     주문 메뉴 및 개수 입력값 분리 전 검증
      */
-    private static void validateCustomerOrderInput(String input) {
+    private static void validateOrderInput(String input) {
         validateIsBlank(input);
         validateIsRightFormat(input);
     }
@@ -46,7 +46,7 @@ public class InputValidator {
     }
 
     private static boolean isRightFormat(String input) {
-        String regex = "^([가-힣A-Za-z0-9]+-\\d+)(,[가-힣A-Za-z0-9]+-\\d+)*$"; // 티본스테이크-1,바비큐립-1
+        String regex = ErrorMessage.ORDER_INPUT_REGEX.getMessage();
         return Pattern.compile(regex)
                 .matcher(input)
                 .matches();
@@ -55,7 +55,7 @@ public class InputValidator {
     /*
     주문 메뉴 및 개수 입력값 분리 후 검증
      */
-    private static void validateCustomerOrderRequest(String input) {
+    private static void validateOrderRequest(String input) {
         List<OrderRequest> orderRequests = InputUtil.parseOrder(input);
         validateIsExistingMenu(orderRequests);
         validateHasDuplicatedMenu(orderRequests);
