@@ -1,5 +1,6 @@
 package christmas.validator;
 
+import christmas.config.PreviewConfig;
 import christmas.domain.order.menu.Menu;
 import christmas.domain.order.menu.MenuType;
 import christmas.domain.order.menu.Quantity;
@@ -12,26 +13,26 @@ public class OrderValidator {
     /*
     Menu 검증
      */
-    public static void validateHasOnlyDrink(Map<Menu, Quantity> customerOrder) {
-        if (hasOnlyDrink(customerOrder)) {
+    public static void validateHasOnlyDrink(Map<Menu, Quantity> order) {
+        if (hasOnlyDrink(order)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_ORDER.getMessage());
         }
     }
 
-    private static boolean hasOnlyDrink(Map<Menu, Quantity> customerOrder) {
-        return customerOrder.keySet()
+    private static boolean hasOnlyDrink(Map<Menu, Quantity> order) {
+        return order.keySet()
                 .stream()
                 .allMatch(menu -> menu.getType().equals(MenuType.DRINK));
     }
 
-    public static void validateIsTotalQuantityValid(Map<Menu, Quantity> customerOrder) {
-        if (calculateTotalQuantity(customerOrder) > 20) {
+    public static void validateIsTotalQuantityValid(Map<Menu, Quantity> order) {
+        if (PreviewConfig.isTotalQuantityGreaterThanCondition(calculateTotalQuantity(order))) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_ORDER.getMessage());
         }
     }
 
-    private static int calculateTotalQuantity(Map<Menu, Quantity> customerOrder) {
-        return customerOrder.values()
+    private static int calculateTotalQuantity(Map<Menu, Quantity> order) {
+        return order.values()
                 .stream()
                 .mapToInt(Quantity::getPrimitiveQuantity)
                 .sum();
@@ -40,8 +41,8 @@ public class OrderValidator {
     /*
     Quantity 검증
      */
-    public static void validateIsGreaterThanCondition(Integer quantity) {
-        if (quantity < 1) {
+    public static void validateIsEachQuantityGreaterThanCondition(Integer quantity) {
+        if (PreviewConfig.isEachQuantityValid(quantity)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_ORDER.getMessage());
         }
     }
@@ -50,12 +51,12 @@ public class OrderValidator {
     Day 검증
      */
     public static void validateIsDateInRange(Integer day) {
-        if (isNumberInRange(day)) {
+        if (isDayInRange(day)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_ORDER.getMessage());
         }
     }
 
-    private static boolean isNumberInRange(Integer number) {
-        return number < 1  || number > 31;
+    private static boolean isDayInRange(Integer day) {
+        return PreviewConfig.isDayInRange(day);
     }
 }

@@ -17,7 +17,7 @@ public class OutputView {
     }
 
     public static void printIntroductionMessage() {
-        System.out.println(SystemMessage.INTRODUCTION.getMessage());
+        System.out.println(SystemMessage.INTRODUCTION.getIntroductionMessageWithMonth());
     }
 
     public static void printDiscountPreviewMessage(DiscountPreviewResponse discountPreviewResponse) {
@@ -32,7 +32,7 @@ public class OutputView {
     }
 
     public static void printDiscountPreviewIntroductionMessage(Day day) {
-        System.out.println(SystemMessage.DISCOUNT_PREVIEW_INTRODUCTION.getIntroductionMessage(day.getPrimitiveDay()));
+        System.out.println(SystemMessage.DISCOUNT_PREVIEW_INTRODUCTION.getIntroductionMessageWithMonthAndDay(day.getPrimitiveDay()));
     }
 
     private static void printOrderMessage(List<OrderResponse> order) {

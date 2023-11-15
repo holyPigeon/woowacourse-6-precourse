@@ -1,5 +1,6 @@
 package christmas.view.constant;
 
+import christmas.config.PreviewConfig;
 import christmas.dto.response.AvailableDiscountResponse;
 import christmas.dto.response.GiftMenuResponse;
 import christmas.dto.response.OrderResponse;
@@ -11,18 +12,18 @@ public enum SystemMessage {
     /*
     웰컴 메시지
      */
-    INTRODUCTION("안녕하세요! 우테코 식당 12월 이벤트 플래너입니다."),
+    INTRODUCTION("안녕하세요! 우테코 식당 %d월 이벤트 플래너입니다."),
 
     /*
     사용자 입력 메시지
      */
-    READ_ESTIMATED_VISITING_DATE("12월 중 식당 예상 방문 날짜는 언제인가요? (숫자만 입력해 주세요!)"),
+    READ_ESTIMATED_VISITING_DATE("%d월 중 식당 예상 방문 날짜는 언제인가요? (숫자만 입력해 주세요!)"),
     READ_ORDER("주문하실 메뉴를 메뉴와 개수를 알려 주세요. (e.g. 해산물파스타-2,레드와인-1,초코케이크-1)"),
 
     /*
     혜택 미리보기 관련 메시지
      */
-    DISCOUNT_PREVIEW_INTRODUCTION("12월 %d일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!"),
+    DISCOUNT_PREVIEW_INTRODUCTION("%d월 %d일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!"),
     ORDER_TITLE("주문 메뉴"),
     INITIAL_PRICE_TITLE("할인 전 총주문 금액"),
     GIFT_MENUS_TITLE("증정 메뉴"),
@@ -50,8 +51,12 @@ public enum SystemMessage {
         this.message = message;
     }
 
-    public String getIntroductionMessage(int day) {
-        return String.format(DISCOUNT_PREVIEW_INTRODUCTION.message, day);
+    public String getIntroductionMessageWithMonth() {
+        return String.format(message, PreviewConfig.MONTH.getNumber());
+    }
+
+    public String getIntroductionMessageWithMonthAndDay(int day) {
+        return String.format(message, PreviewConfig.MONTH.getNumber(), day);
     }
 
     public String getOrderMessage(OrderResponse eachMenu) {
