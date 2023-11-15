@@ -23,8 +23,8 @@ public class PreviewController {
     public void run() {
         printIntroductionMessage();
 
-        Day day = readWithExceptionHandling(PreviewController::readDay); // 날짜 입력
-        Order order = readWithExceptionHandling(PreviewController::readOrder); // 메뉴 입력
+        Day day = readWithExceptionHandling(PreviewController::readDay);
+        Order order = readWithExceptionHandling(PreviewController::readOrder);
         PreviewService previewService = PreviewService.create(order, day);
         closeRead();
 
@@ -54,7 +54,7 @@ public class PreviewController {
     }
 
     private static void printIntroductionMessage() {
-        OutputView.printIntroductionMessage(); // 인트로 메시지 출력
+        OutputView.printIntroductionMessage();
     }
 
     private static void printDiscountPreviewMessage(PreviewService previewService) {
