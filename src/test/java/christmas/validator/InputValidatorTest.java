@@ -6,10 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 class InputValidatorTest {
 
@@ -27,12 +24,10 @@ class InputValidatorTest {
                 );
     }
 
-    @Test
+    @ParameterizedTest
     @DisplayName("정수가 아닌 날짜 입력값이 주어졌을 때 예외를 반환한다.")
-    void throw_exception_when_given_day_input_is_not_digit() {
-        // given
-        String input = "a";
-
+    @CsvSource({"가", "+", "bear", "!", "a"})
+    void throw_exception_when_given_day_input_is_not_digit(String input) {
         // when, then
         assertThatThrownBy(() -> InputValidator.validateEstimatedVisitingDateInput(input))
                 .isInstanceOf(IllegalArgumentException.class)
