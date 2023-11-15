@@ -16,7 +16,7 @@ public class Quantity {
     }
 
     private void validate(Integer quantity) {
-        OrderValidator.validateIsGreaterThanCondition(quantity);
+        OrderValidator.validateIsEachQuantityGreaterThanCondition(quantity);
     }
 
     public Integer getPrimitiveQuantity() {
