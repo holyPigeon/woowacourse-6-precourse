@@ -13,6 +13,7 @@ import java.util.Map;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
+@DisplayName("입력값 유틸 기능 테스트")
 class InputUtilTest {
 
     @Test

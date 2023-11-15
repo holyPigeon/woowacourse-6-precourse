@@ -15,6 +15,7 @@ import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+@DisplayName("주문 관련 비즈니스 검증 테스트")
 class OrderValidatorTest {
 
     @Test

@@ -14,6 +14,7 @@ import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@DisplayName("주문 테스트")
 class OrderTest {
 
     List<OrderRequest> orderRequests;

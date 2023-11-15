@@ -8,6 +8,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+@DisplayName("입력값 검증 테스트")
 class InputValidatorTest {
 
     @Test
