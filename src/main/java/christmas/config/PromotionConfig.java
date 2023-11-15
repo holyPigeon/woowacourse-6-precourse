@@ -1,6 +1,6 @@
 package christmas.config;
 
-public enum PreviewConfig {
+public enum PromotionConfig {
 
     MONTH(12),
     MINIMUM_DAY(1),
@@ -11,7 +11,7 @@ public enum PreviewConfig {
 
     private final int number;
 
-    PreviewConfig(int number) {
+    PromotionConfig(int number) {
         this.number = number;
     }
 

@@ -13,18 +13,18 @@ import christmas.dto.response.OrderResponse;
 import java.util.Collections;
 import java.util.List;
 
-public class PreviewService {
+public class PromotionService {
 
     private final DiscountManager discountManager;
     private final Order order;
 
-    private PreviewService(Order order, Day day) {
+    private PromotionService(Order order, Day day) {
         this.discountManager = DiscountManager.create(order, day);
         this.order = order;
     }
 
-    public static PreviewService create(Order order, Day day) {
-        return new PreviewService(order, day);
+    public static PromotionService create(Order order, Day day) {
+        return new PromotionService(order, day);
     }
 
     /*

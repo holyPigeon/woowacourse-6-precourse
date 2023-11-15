@@ -1,6 +1,6 @@
 package christmas.view.constant;
 
-import christmas.config.PreviewConfig;
+import christmas.config.PromotionConfig;
 import christmas.dto.response.AvailableDiscountResponse;
 import christmas.dto.response.GiftMenuResponse;
 import christmas.dto.response.OrderResponse;
@@ -52,11 +52,11 @@ public enum SystemMessage {
     }
 
     public String getIntroductionMessageWithMonth() {
-        return String.format(message, PreviewConfig.MONTH.getNumber());
+        return String.format(message, PromotionConfig.MONTH.getNumber());
     }
 
     public String getIntroductionMessageWithMonthAndDay(int day) {
-        return String.format(message, PreviewConfig.MONTH.getNumber(), day);
+        return String.format(message, PromotionConfig.MONTH.getNumber(), day);
     }
 
     public String getOrderMessage(OrderResponse eachMenu) {

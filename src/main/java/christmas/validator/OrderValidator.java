@@ -1,6 +1,6 @@
 package christmas.validator;
 
-import christmas.config.PreviewConfig;
+import christmas.config.PromotionConfig;
 import christmas.domain.order.menu.Menu;
 import christmas.domain.order.menu.MenuType;
 import christmas.domain.order.menu.Quantity;
@@ -26,7 +26,7 @@ public class OrderValidator {
     }
 
     public static void validateIsTotalQuantityValid(Map<Menu, Quantity> order) {
-        if (PreviewConfig.isTotalQuantityGreaterThanCondition(calculateTotalQuantity(order))) {
+        if (PromotionConfig.isTotalQuantityGreaterThanCondition(calculateTotalQuantity(order))) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_ORDER.getMessage());
         }
     }
@@ -42,7 +42,7 @@ public class OrderValidator {
     Quantity 검증
      */
     public static void validateIsEachQuantityGreaterThanCondition(Integer quantity) {
-        if (PreviewConfig.isEachQuantityValid(quantity)) {
+        if (PromotionConfig.isEachQuantityValid(quantity)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_ORDER.getMessage());
         }
     }
@@ -57,6 +57,6 @@ public class OrderValidator {
     }
 
     private static boolean isDayInRange(Integer day) {
-        return PreviewConfig.isDayInRange(day);
+        return PromotionConfig.isDayInRange(day);
     }
 }

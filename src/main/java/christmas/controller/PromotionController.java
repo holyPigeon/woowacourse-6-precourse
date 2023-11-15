@@ -1,6 +1,6 @@
 package christmas.controller;
 
-import christmas.domain.PreviewService;
+import christmas.domain.PromotionService;
 import christmas.domain.order.Day;
 import christmas.domain.order.Order;
 import christmas.dto.response.DiscountPreviewResponse;
@@ -9,26 +9,26 @@ import christmas.view.OutputView;
 
 import java.util.function.Supplier;
 
-public class PreviewController {
+public class PromotionController {
 
-    private PreviewController() {
+    private PromotionController() {
 
     }
 
-    public static PreviewController create() {
-        return new PreviewController();
+    public static PromotionController create() {
+        return new PromotionController();
     }
 
 
     public void run() {
         printIntroductionMessage();
 
-        Day day = readWithExceptionHandling(PreviewController::readDay);
-        Order order = readWithExceptionHandling(PreviewController::readOrder);
-        PreviewService previewService = PreviewService.create(order, day);
+        Day day = readWithExceptionHandling(PromotionController::readDay);
+        Order order = readWithExceptionHandling(PromotionController::readOrder);
+        PromotionService promotionService = PromotionService.create(order, day);
         closeRead();
 
-        printDiscountPreviewMessage(previewService);
+        printDiscountPreviewMessage(promotionService);
     }
 
     private static void printIntroductionMessage() {
@@ -57,7 +57,7 @@ public class PreviewController {
         InputView.closeRead();
     }
 
-    private static void printDiscountPreviewMessage(PreviewService previewService) {
-        OutputView.printDiscountPreviewMessage(DiscountPreviewResponse.from(previewService));
+    private static void printDiscountPreviewMessage(PromotionService promotionService) {
+        OutputView.printDiscountPreviewMessage(DiscountPreviewResponse.from(promotionService));
     }
 }

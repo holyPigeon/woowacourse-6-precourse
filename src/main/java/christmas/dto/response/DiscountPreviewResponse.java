@@ -1,6 +1,6 @@
 package christmas.dto.response;
 
-import christmas.domain.PreviewService;
+import christmas.domain.PromotionService;
 import christmas.domain.order.Badge;
 import christmas.domain.order.Day;
 
@@ -17,19 +17,19 @@ public class DiscountPreviewResponse {
     private int discountedPrice;
     private Badge badge;
 
-    public DiscountPreviewResponse(PreviewService previewService) {
+    public DiscountPreviewResponse(PromotionService promotionService) {
         this.day = day;
-        this.orderRespons = previewService.findOrderResponse();
-        this.initialPrice = previewService.calculateInitialPrice();
-        this.giftMenuResponses = previewService.findGiftMenuResponses();
-        this.availableDiscountResponses = previewService.findAvailableDiscountResponses();
-        this.discountAmount = previewService.calculateDiscountAmount();
-        this.discountedPrice = previewService.calculateDiscountedPrice();
-        this.badge = previewService.calculateBadge();
+        this.orderRespons = promotionService.findOrderResponse();
+        this.initialPrice = promotionService.calculateInitialPrice();
+        this.giftMenuResponses = promotionService.findGiftMenuResponses();
+        this.availableDiscountResponses = promotionService.findAvailableDiscountResponses();
+        this.discountAmount = promotionService.calculateDiscountAmount();
+        this.discountedPrice = promotionService.calculateDiscountedPrice();
+        this.badge = promotionService.calculateBadge();
     }
 
-    public static DiscountPreviewResponse from(PreviewService previewService) {
-        return new DiscountPreviewResponse(previewService);
+    public static DiscountPreviewResponse from(PromotionService promotionService) {
+        return new DiscountPreviewResponse(promotionService);
     }
 
     public Day getDay() {
