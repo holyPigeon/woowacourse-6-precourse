@@ -84,14 +84,15 @@ public class PreviewService {
     할인 후 예상 결제 금액
      */
     public int calculateDiscountedPrice(Order order) {
-        return order.calculateInitialPrice() - calculateDiscountAmount();
+        return order.calculateInitialPrice() - calculateActualDiscountAmount();
     }
 
-    public List<Discount> findAvailableDiscounts() {
-        return discountManager.getDiscounts()
+    public int calculateActualDiscountAmount() {
+        return findAvailableDiscounts()
                 .stream()
-                .filter(Discount::getIsAvailable)
-                .toList();
+                .filter(discount -> !(discount instanceof  GiftDiscount))
+                .mapToInt(Discount::getDiscountAmount)
+                .sum();
     }
 
     /*
@@ -99,5 +100,12 @@ public class PreviewService {
      */
     public Badge calculateBadge(Order order) {
         return Badge.calculateBadge(calculateDiscountAmount());
+    }
+
+    public List<Discount> findAvailableDiscounts() {
+        return discountManager.getDiscounts()
+                .stream()
+                .filter(Discount::getIsAvailable)
+                .toList();
     }
 }
