@@ -51,7 +51,7 @@ class GiftDiscountTest {
     }
 
     @ParameterizedTest
-    @DisplayName("주문과 날짜 정보가 주어졌을 때, 할인 가능 여부를 설정한다.")
+    @DisplayName("총주문 금액이 120,000원을 넘었을 때, 할인 가능하다.")
     @ValueSource(ints = {1, 4, 9, 15, 25})
     void return_is_discount_available_when_order_and_day_is_given(int day) {
         // when
