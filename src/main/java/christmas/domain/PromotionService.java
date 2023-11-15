@@ -51,7 +51,7 @@ public class PromotionService {
             return Menu.getGiftMenus()
                     .entrySet()
                     .stream()
-                    .map(entry -> GiftMenuResponse.of(entry.getKey(), entry.getValue()))
+                    .map(menuAndQuantity -> GiftMenuResponse.of(menuAndQuantity.getKey(), menuAndQuantity.getValue()))
                     .toList();
         }
         return Collections.emptyList();

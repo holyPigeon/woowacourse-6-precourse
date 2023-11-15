@@ -17,17 +17,17 @@ public class InputUtil {
     }
 
     public static List<OrderRequest> parseOrder(String input) {
-        return getEachNameAndQuantity(input)
+        return getEachNamesAndQuantities(input)
                 .map(parts -> OrderRequest.of(parts[0], Integer.parseInt(parts[1])))
                 .toList();
     }
 
-    private static Stream<String[]> getEachNameAndQuantity(String input) {
-        return getEachMenu(input)
+    private static Stream<String[]> getEachNamesAndQuantities(String input) {
+        return getMenuNamesAndQuantities(input)
                 .map(item -> item.split("-"));
     }
 
-    private static Stream<String> getEachMenu(String input) {
+    private static Stream<String> getMenuNamesAndQuantities(String input) {
         return Arrays.stream(input.split(","));
     }
 
