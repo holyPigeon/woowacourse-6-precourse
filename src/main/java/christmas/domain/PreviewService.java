@@ -7,11 +7,11 @@ import christmas.domain.order.Badge;
 import christmas.domain.order.Day;
 import christmas.domain.order.Order;
 import christmas.domain.order.menu.Menu;
-import christmas.domain.order.menu.Quantity;
 import christmas.dto.response.AvailableDiscountResponse;
 import christmas.dto.response.GiftMenuResponse;
 import christmas.dto.response.OrderResponse;
 
+import java.util.Collections;
 import java.util.List;
 
 public class PreviewService {
@@ -51,9 +51,7 @@ public class PreviewService {
                     .map(entry -> GiftMenuResponse.of(entry.getKey(), entry.getValue()))
                     .toList();
         }
-        return List.of(
-                GiftMenuResponse.of(Menu.NONE, Quantity.create(1))
-        );
+        return Collections.emptyList();
     }
 
     public boolean hasGiftDiscount() {
