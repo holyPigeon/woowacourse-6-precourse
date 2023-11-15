@@ -90,10 +90,6 @@ public class PromotionService {
         return Badge.calculateBadge(calculateDiscountAmount());
     }
 
-    public List<Discount> findAvailableDiscounts() {
-        return discountManager.findAvailableDiscounts();
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
