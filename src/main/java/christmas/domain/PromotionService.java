@@ -34,7 +34,7 @@ public class PromotionService {
     주문 메뉴 리스트
      */
     public List<OrderResponse> findOrderResponse() {
-        return order.findOrderResponse();
+        return order.findOrderResponses();
     }
 
     /*

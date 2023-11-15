@@ -31,7 +31,7 @@ public class Order {
         OrderValidator.validateIsTotalQuantityValid(order);
     }
 
-    public List<OrderResponse> findOrderResponse() {
+    public List<OrderResponse> findOrderResponses() {
         return Order
                 .entrySet()
                 .stream()
@@ -47,6 +47,14 @@ public class Order {
                 .sum();
     }
 
+    private int getMenuPrice(Map.Entry<Menu, Quantity> entry) {
+        return entry.getKey().getPrice();
+    }
+
+    private Integer getEachQuantity(Map.Entry<Menu, Quantity> entry) {
+        return entry.getValue().getPrimitiveQuantity();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -58,14 +66,6 @@ public class Order {
     @Override
     public int hashCode() {
         return Objects.hash(getOrder());
-    }
-
-    private Integer getEachQuantity(Map.Entry<Menu, Quantity> entry) {
-        return entry.getValue().getPrimitiveQuantity();
-    }
-
-    private int getMenuPrice(Map.Entry<Menu, Quantity> entry) {
-        return entry.getKey().getPrice();
     }
 
     public Map<Menu, Quantity> getOrder() {

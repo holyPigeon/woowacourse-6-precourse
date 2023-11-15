@@ -39,26 +39,26 @@ class MenuTest {
     @Test
     @DisplayName("일반 메뉴가 주어졌을 때, isGiftMenu()가 false를 반환한다.")
     void return_isGift_false_when_regular_menu_is_given() {
-        //given
+        // given
         Menu tBoneSteak = Menu.T_BONE_STEAK;
 
-        //when
+        // when
         boolean isGift = Menu.isGiftMenu(tBoneSteak);
 
-        //then
+        // then
         assertThat(isGift).isEqualTo(false);
     }
 
     @Test
     @DisplayName("getGiftMenus()를 실행하면 증정 메뉴들을 반환한다.")
     void return_gift_menus_when_execute_getGiftMenus() {
-        //given
+        // given
         Map<Menu, Quantity> giftMenus = Map.of(Menu.CHAMPAGNE, Quantity.create(1));
 
-        //when
+        // when
         Map<Menu, Quantity> findGiftMenus = Menu.getGiftMenus();
 
-        //then
+        // then
         assertThat(giftMenus).isEqualTo(findGiftMenus);
     }
 }

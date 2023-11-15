@@ -21,7 +21,7 @@ class OrderTest {
 
     @BeforeEach
     void setUp() {
-        //given
+        // given
         String orderInput = "해산물파스타-2,아이스크림-2";
         orderRequests = InputUtil.parseOrder(orderInput);
         order = Order.create(orderRequests);
@@ -36,10 +36,10 @@ class OrderTest {
         String name2 = orderRequests.get(1).getMenuName();
         int quantity2 = orderRequests.get(1).getQuantity();
 
-        //when
+        // when
         List<OrderResponse> findOrderResponses = order.findOrderResponses();
 
-        //then
+        // then
         assertThat(name1).isEqualTo(findOrderResponses.get(0).getName());
         assertThat(quantity1).isEqualTo(findOrderResponses.get(0).getQuantity());
         assertThat(name2).isEqualTo(findOrderResponses.get(1).getName());
@@ -49,17 +49,17 @@ class OrderTest {
     @Test
     @DisplayName("주어진 주문을 바탕으로 총주문 금액을 계산하여 반환한다.")
     void calculate_initial_price_when_order_is_given() {
-        //given
+        // given
         Map<Menu, Quantity> order = InputUtil.parseOrderRequests(orderRequests);
         int price = order.entrySet()
                 .stream()
                 .mapToInt(entry -> entry.getKey().getPrice() * entry.getValue().getPrimitiveQuantity())
                 .sum();
 
-        //when
+        // when
         int calculatedPrice = this.order.calculateInitialPrice();
 
-        //then
+        // then
         assertThat(price).isEqualTo(calculatedPrice);
     }
 }
