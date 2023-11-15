@@ -15,6 +15,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
+@DisplayName("주간 할인 테스트")
 class WeekdayDiscountTest {
 
     List<OrderRequest> orderRequests;

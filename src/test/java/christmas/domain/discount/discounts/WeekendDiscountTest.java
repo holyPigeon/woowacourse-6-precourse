@@ -14,6 +14,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@DisplayName("주말 할인 테스트")
 class WeekendDiscountTest {
 
     List<OrderRequest> orderRequests;

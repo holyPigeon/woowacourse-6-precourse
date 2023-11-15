@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+@DisplayName("할인 관리 테스트")
 class DiscountManagerTest {
 
     List<OrderRequest> orderRequests;
