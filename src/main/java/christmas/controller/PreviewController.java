@@ -28,8 +28,7 @@ public class PreviewController {
         PreviewService previewService = PreviewService.create(order, day);
         closeRead();
 
-        printDiscountPreviewMessage(order, previewService, day);
-
+        printDiscountPreviewMessage(previewService);
     }
 
     private static Day readDay() throws IllegalArgumentException {
@@ -58,7 +57,7 @@ public class PreviewController {
         OutputView.printIntroductionMessage(); // 인트로 메시지 출력
     }
 
-    private static void printDiscountPreviewMessage(Order order, PreviewService previewService, Day day) {
-        OutputView.printDiscountPreviewMessage(DiscountPreviewResponse.of(previewService, order, day));
+    private static void printDiscountPreviewMessage(PreviewService previewService) {
+        OutputView.printDiscountPreviewMessage(DiscountPreviewResponse.from(previewService));
     }
 }

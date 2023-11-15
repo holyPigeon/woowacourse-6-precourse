@@ -17,9 +17,13 @@ import java.util.List;
 public class PreviewService {
 
     private final DiscountManager discountManager;
+    private final Order order;
+    private final Day day;
 
     private PreviewService(Order order, Day day) {
         this.discountManager = DiscountManager.create(order, day);
+        this.order = order;
+        this.day = day;
     }
 
     public static PreviewService create(Order order, Day day) {
@@ -29,14 +33,14 @@ public class PreviewService {
     /*
     주문 메뉴 리스트
      */
-    public List<OrderResponse> findOrderResponse(Order order) {
+    public List<OrderResponse> findOrderResponse() {
         return order.findOrderResponse();
     }
 
     /*
     할인 전 총주문 금액
      */
-    public int calculateInitialPrice(Order order) {
+    public int calculateInitialPrice() {
         return order.calculateInitialPrice();
     }
 
@@ -83,7 +87,7 @@ public class PreviewService {
     /*
     할인 후 예상 결제 금액
      */
-    public int calculateDiscountedPrice(Order order) {
+    public int calculateDiscountedPrice() {
         return order.calculateInitialPrice() - calculateActualDiscountAmount();
     }
 
@@ -98,7 +102,7 @@ public class PreviewService {
     /*
     배지
      */
-    public Badge calculateBadge(Order order) {
+    public Badge calculateBadge() {
         return Badge.calculateBadge(calculateDiscountAmount());
     }
 
