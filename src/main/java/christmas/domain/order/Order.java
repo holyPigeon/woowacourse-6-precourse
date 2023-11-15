@@ -18,7 +18,7 @@ public class Order {
     private Order(List<OrderRequest> orderRequests) {
         Map<Menu, Quantity> order = InputUtil.parseOrderRequests(orderRequests);
         validate(order);
-        this.Order = order;
+        this.Order = new EnumMap<>(order);
     }
 
     public static Order create(List<OrderRequest> orderRequests) {
