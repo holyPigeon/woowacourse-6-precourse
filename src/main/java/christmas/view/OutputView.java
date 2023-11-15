@@ -78,9 +78,9 @@ public class OutputView {
         System.out.println(SystemMessage.MONEY_FORMAT.getMoneyMessage(discountedPrice));
     }
 
-    private static void printBadgeMessage(Badge badge) {
+    private static void printBadgeMessage(String badge) {
         System.out.println();
         System.out.println(SystemMessage.BADGE_TITLE.getTitleMessage());
-        System.out.print(SystemMessage.BADGE_TITLE.getBadgeMessage(badge.getName()));
+        System.out.print(SystemMessage.BADGE_TITLE.getBadgeMessage(badge));
     }
 }
