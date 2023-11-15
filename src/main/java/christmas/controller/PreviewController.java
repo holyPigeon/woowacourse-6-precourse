@@ -43,7 +43,7 @@ public class PreviewController {
     }
 
     private static Order readOrder() throws IllegalArgumentException {
-        return Order.create(InputView.readCustomerMenus());
+        return Order.create(InputView.readOrder());
     }
 
     private static <T> T readWithExceptionHandling(Supplier<T> reader) {

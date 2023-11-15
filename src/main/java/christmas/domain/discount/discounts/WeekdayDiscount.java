@@ -34,7 +34,7 @@ public class WeekdayDiscount implements Discount {
     }
 
     private static int findDiscountableMenuCount(Order order) {
-        return order.getCustomerMenus()
+        return order.getOrder()
                 .entrySet()
                 .stream()
                 .filter(WeekdayDiscount::isMenuTypeDessert)

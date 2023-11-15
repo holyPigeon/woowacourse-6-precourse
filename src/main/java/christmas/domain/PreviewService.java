@@ -10,7 +10,7 @@ import christmas.domain.order.menu.Menu;
 import christmas.domain.order.menu.Quantity;
 import christmas.dto.response.AvailableDiscountResponse;
 import christmas.dto.response.GiftMenuResponse;
-import christmas.dto.response.OrderedMenuResponse;
+import christmas.dto.response.OrderResponse;
 
 import java.util.List;
 
@@ -29,8 +29,8 @@ public class PreviewService {
     /*
     주문 메뉴 리스트
      */
-    public List<OrderedMenuResponse> findOrderedMenus(Order order) {
-        return order.findOrderedMenus();
+    public List<OrderResponse> findOrderResponse(Order order) {
+        return order.findOrderResponse();
     }
 
     /*

@@ -12,26 +12,26 @@ public class OrderValidator {
     /*
     Menu 검증
      */
-    public static void validateHasOnlyDrink(Map<Menu, Quantity> customerMenus) {
-        if (hasOnlyDrink(customerMenus)) {
+    public static void validateHasOnlyDrink(Map<Menu, Quantity> customerOrder) {
+        if (hasOnlyDrink(customerOrder)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_ORDER.getMessage());
         }
     }
 
-    private static boolean hasOnlyDrink(Map<Menu, Quantity> customerMenus) {
-        return customerMenus.keySet()
+    private static boolean hasOnlyDrink(Map<Menu, Quantity> customerOrder) {
+        return customerOrder.keySet()
                 .stream()
                 .allMatch(menu -> menu.getType().equals(MenuType.DRINK));
     }
 
-    public static void validateIsTotalQuantityValid(Map<Menu, Quantity> customerMenus) {
-        if (calculateTotalQuantity(customerMenus) > 20) {
+    public static void validateIsTotalQuantityValid(Map<Menu, Quantity> customerOrder) {
+        if (calculateTotalQuantity(customerOrder) > 20) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_ORDER.getMessage());
         }
     }
 
-    private static int calculateTotalQuantity(Map<Menu, Quantity> customerMenus) {
-        return customerMenus.values()
+    private static int calculateTotalQuantity(Map<Menu, Quantity> customerOrder) {
+        return customerOrder.values()
                 .stream()
                 .mapToInt(Quantity::getPrimitiveQuantity)
                 .sum();

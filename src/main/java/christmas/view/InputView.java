@@ -1,7 +1,7 @@
 package christmas.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import christmas.dto.request.CustomerMenuRequest;
+import christmas.dto.request.OrderRequest;
 import christmas.util.InputUtil;
 import christmas.validator.InputValidator;
 
@@ -21,11 +21,11 @@ public class InputView {
         return Integer.parseInt(input);
     }
 
-    public static List<CustomerMenuRequest> readCustomerMenus() {
+    public static List<OrderRequest> readOrder() {
         System.out.println("주문하실 메뉴를 메뉴와 개수를 알려 주세요. (e.g. 해산물파스타-2,레드와인-1,초코케이크-1)");
         String input = Console.readLine();
-        InputValidator.validateCustomerMenus(input);
+        InputValidator.validateOrder(input);
 
-        return InputUtil.parseCustomerMenus(input);
+        return InputUtil.parseOrder(input);
     }
 }

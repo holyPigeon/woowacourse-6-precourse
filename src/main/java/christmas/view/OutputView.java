@@ -4,7 +4,7 @@ import christmas.domain.order.Badge;
 import christmas.dto.response.AvailableDiscountResponse;
 import christmas.dto.response.DiscountPreviewResponse;
 import christmas.dto.response.GiftMenuResponse;
-import christmas.dto.response.OrderedMenuResponse;
+import christmas.dto.response.OrderResponse;
 
 import java.text.DecimalFormat;
 import java.util.List;
@@ -21,7 +21,7 @@ public class OutputView {
 
     public static void printDiscountPreviewMessage(DiscountPreviewResponse discountPreviewResponse) {
         printDiscountPreviewIntroductionMessage();
-        printOrderedMenusMessage(discountPreviewResponse.getOrderedMenuResponses());
+        printOrderMessage(discountPreviewResponse.getOrderResponses());
         printInitialPriceMessage(discountPreviewResponse.getInitialPrice());
         printGiftMenusMessage(discountPreviewResponse.getGiftMenuResponses());
         printAvailableDiscountsMessage(discountPreviewResponse.getAvailableDiscountResponses());
@@ -34,10 +34,10 @@ public class OutputView {
         System.out.printf("12월 %d일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!%n", 26);
     }
 
-    private static void printOrderedMenusMessage(List<OrderedMenuResponse> orderedMenus) {
+    private static void printOrderMessage(List<OrderResponse> order) {
         System.out.println();
         System.out.println("<주문 메뉴>");
-        orderedMenus.forEach(orderedMenu -> System.out.printf("%s %d개%n", orderedMenu.getName(), orderedMenu.getQuantity()));
+        order.forEach(eachMenu -> System.out.printf("%s %d개%n", eachMenu.getName(), eachMenu.getQuantity()));
     }
 
     private static void printInitialPriceMessage(int initialPrice) {

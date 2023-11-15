@@ -8,7 +8,7 @@ import java.util.List;
 
 public class DiscountPreviewResponse {
 
-    private List<OrderedMenuResponse> orderedMenuResponses;
+    private List<OrderResponse> orderRespons;
     private int initialPrice;
     private List<GiftMenuResponse> giftMenuResponses;
     private List<AvailableDiscountResponse> availableDiscountResponses;
@@ -17,7 +17,7 @@ public class DiscountPreviewResponse {
     private Badge badge;
 
     public DiscountPreviewResponse(PreviewService previewService, Order order) {
-        this.orderedMenuResponses = previewService.findOrderedMenus(order);
+        this.orderRespons = previewService.findOrderResponse(order);
         this.initialPrice = previewService.calculateInitialPrice(order);
         this.giftMenuResponses = previewService.findGiftMenuResponses();
         this.availableDiscountResponses = previewService.findAvailableDiscountResponses();
@@ -30,8 +30,8 @@ public class DiscountPreviewResponse {
         return new DiscountPreviewResponse(previewService, order);
     }
 
-    public List<OrderedMenuResponse> getOrderedMenuResponses() {
-        return orderedMenuResponses;
+    public List<OrderResponse> getOrderResponses() {
+        return orderRespons;
     }
 
     public int getInitialPrice() {

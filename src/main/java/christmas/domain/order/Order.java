@@ -2,8 +2,8 @@ package christmas.domain.order;
 
 import christmas.domain.order.menu.Menu;
 import christmas.domain.order.menu.Quantity;
-import christmas.dto.request.CustomerMenuRequest;
-import christmas.dto.response.OrderedMenuResponse;
+import christmas.dto.request.OrderRequest;
+import christmas.dto.response.OrderResponse;
 import christmas.util.InputUtil;
 import christmas.validator.OrderValidator;
 
@@ -13,33 +13,33 @@ import java.util.Map;
 
 public class Order {
 
-    Map<Menu, Quantity> customerMenus = new EnumMap<>(Menu.class);
+    Map<Menu, Quantity> Order = new EnumMap<>(Menu.class);
 
-    private Order(List<CustomerMenuRequest> customerMenuRequests) {
-        Map<Menu, Quantity> customerMenus = InputUtil.parseCustomerMenuRequests(customerMenuRequests);
-        validate(customerMenus);
-        this.customerMenus = customerMenus;
+    private Order(List<OrderRequest> orderRequests) {
+        Map<Menu, Quantity> order = InputUtil.parseOrderRequests(orderRequests);
+        validate(order);
+        this.Order = order;
     }
 
-    public static Order create(List<CustomerMenuRequest> customerMenuRequests) {
-        return new Order(customerMenuRequests);
+    public static Order create(List<OrderRequest> orderRequests) {
+        return new Order(orderRequests);
     }
 
-    private void validate(Map<Menu, Quantity> customerMenus) {
-        OrderValidator.validateHasOnlyDrink(customerMenus);
-        OrderValidator.validateIsTotalQuantityValid(customerMenus);
+    private void validate(Map<Menu, Quantity> order) {
+        OrderValidator.validateHasOnlyDrink(order);
+        OrderValidator.validateIsTotalQuantityValid(order);
     }
 
-    public List<OrderedMenuResponse> findOrderedMenus() {
-        return customerMenus
+    public List<OrderResponse> findOrderResponse() {
+        return Order
                 .entrySet()
                 .stream()
-                .map(entry -> OrderedMenuResponse.of(entry.getKey(), entry.getValue()))
+                .map(entry -> OrderResponse.of(entry.getKey(), entry.getValue()))
                 .toList();
     }
 
     public int calculateInitialPrice() {
-        return customerMenus
+        return Order
                 .entrySet()
                 .stream()
                 .mapToInt(entry -> getMenuPrice(entry) * getEachQuantity(entry))
@@ -54,7 +54,7 @@ public class Order {
         return entry.getKey().getPrice();
     }
 
-    public Map<Menu, Quantity> getCustomerMenus() {
-        return new EnumMap<>(customerMenus);
+    public Map<Menu, Quantity> getOrder() {
+        return new EnumMap<>(Order);
     }
 }

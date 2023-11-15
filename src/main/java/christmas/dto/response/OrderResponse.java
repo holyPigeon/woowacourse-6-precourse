@@ -3,18 +3,18 @@ package christmas.dto.response;
 import christmas.domain.order.menu.Menu;
 import christmas.domain.order.menu.Quantity;
 
-public class OrderedMenuResponse {
+public class OrderResponse {
 
     private String name;
     private int quantity;
 
-    private OrderedMenuResponse(Menu menu, Quantity quantity) {
+    private OrderResponse(Menu menu, Quantity quantity) {
         this.name = menu.getName();
         this.quantity = quantity.getPrimitiveQuantity();
     }
 
-    public static OrderedMenuResponse of(Menu menu, Quantity quantity) {
-        return new OrderedMenuResponse(menu, quantity);
+    public static OrderResponse of(Menu menu, Quantity quantity) {
+        return new OrderResponse(menu, quantity);
     }
 
     public String getName() {

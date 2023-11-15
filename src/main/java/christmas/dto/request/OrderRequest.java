@@ -1,17 +1,17 @@
 package christmas.dto.request;
 
-public class CustomerMenuRequest {
+public class OrderRequest {
 
     private String menuName;
     private Integer quantity;
 
-    private CustomerMenuRequest(String menuName, Integer quantity) {
+    private OrderRequest(String menuName, Integer quantity) {
         this.menuName = menuName;
         this.quantity = quantity;
     }
 
-    public static CustomerMenuRequest of(String menuName, Integer quantity) {
-        return new CustomerMenuRequest(menuName, quantity);
+    public static OrderRequest of(String menuName, Integer quantity) {
+        return new OrderRequest(menuName, quantity);
     }
 
     public String getMenuName() {

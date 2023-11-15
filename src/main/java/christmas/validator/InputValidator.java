@@ -1,7 +1,7 @@
 package christmas.validator;
 
 import christmas.domain.order.menu.Menu;
-import christmas.dto.request.CustomerMenuRequest;
+import christmas.dto.request.OrderRequest;
 import christmas.util.InputUtil;
 import christmas.exception.ErrorMessage;
 
@@ -26,15 +26,15 @@ public class InputValidator {
     /*
     주문 메뉴 및 개수 입력값 전체 검증
      */
-    public static void validateCustomerMenus(String input) {
-        validateCustomerMenusInput(input);
-        validateCustomerMenusRequest(input);
+    public static void validateOrder(String input) {
+        validateCustomerOrderInput(input);
+        validateCustomerOrderRequest(input);
     }
 
     /*
     주문 메뉴 및 개수 입력값 분리 전 검증
      */
-    private static void validateCustomerMenusInput(String input) {
+    private static void validateCustomerOrderInput(String input) {
         validateIsBlank(input);
         validateIsRightFormat(input);
     }
@@ -55,22 +55,22 @@ public class InputValidator {
     /*
     주문 메뉴 및 개수 입력값 분리 후 검증
      */
-    private static void validateCustomerMenusRequest(String input) {
-        List<CustomerMenuRequest> customerMenuRequests = InputUtil.parseCustomerMenus(input);
-        validateIsExistingMenu(customerMenuRequests);
-        validateHasDuplicatedMenu(customerMenuRequests);
+    private static void validateCustomerOrderRequest(String input) {
+        List<OrderRequest> orderRequests = InputUtil.parseOrder(input);
+        validateIsExistingMenu(orderRequests);
+        validateHasDuplicatedMenu(orderRequests);
     }
 
-    private static void validateIsExistingMenu(List<CustomerMenuRequest> menuRequests) {
-        if (!isExistingMenu(menuRequests)) {
+    private static void validateIsExistingMenu(List<OrderRequest> orderRequests) {
+        if (!isExistingMenu(orderRequests)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_ORDER.getMessage());
         }
     }
 
-    private static boolean isExistingMenu(List<CustomerMenuRequest> menuRequests) {
+    private static boolean isExistingMenu(List<OrderRequest> orderRequests) {
         List<String> menuNames = getMenuNames();
-        return menuRequests.stream()
-                .map(CustomerMenuRequest::getMenuName)
+        return orderRequests.stream()
+                .map(OrderRequest::getMenuName)
                 .allMatch(menuNames::contains);
     }
 
@@ -80,17 +80,17 @@ public class InputValidator {
                 .toList();
     }
 
-    private static void validateHasDuplicatedMenu(List<CustomerMenuRequest> menuRequests) {
-        if (hasDuplicatedMenu(menuRequests)) {
+    private static void validateHasDuplicatedMenu(List<OrderRequest> orderRequests) {
+        if (hasDuplicatedMenu(orderRequests)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_ORDER.getMessage());
         }
     }
 
-    private static boolean hasDuplicatedMenu(List<CustomerMenuRequest> menuRequests) {
-        return menuRequests.stream()
-                .map(CustomerMenuRequest::getMenuName)
+    private static boolean hasDuplicatedMenu(List<OrderRequest> orderRequests) {
+        return orderRequests.stream()
+                .map(OrderRequest::getMenuName)
                 .distinct()
-                .count() != menuRequests.size();
+                .count() != orderRequests.size();
     }
 
     /*

@@ -2,7 +2,7 @@ package christmas.util;
 
 import christmas.domain.order.menu.Menu;
 import christmas.domain.order.menu.Quantity;
-import christmas.dto.request.CustomerMenuRequest;
+import christmas.dto.request.OrderRequest;
 
 import java.util.Arrays;
 import java.util.List;
@@ -16,9 +16,9 @@ public class InputUtil {
 
     }
 
-    public static List<CustomerMenuRequest> parseCustomerMenus(String input) {
+    public static List<OrderRequest> parseOrder(String input) {
         return getEachNameAndQuantity(input)
-                .map(parts -> CustomerMenuRequest.of(parts[0], Integer.parseInt(parts[1])))
+                .map(parts -> OrderRequest.of(parts[0], Integer.parseInt(parts[1])))
                 .toList();
     }
 
@@ -31,8 +31,8 @@ public class InputUtil {
         return Arrays.stream(input.split(","));
     }
 
-    public static Map<Menu, Quantity> parseCustomerMenuRequests(List<CustomerMenuRequest> customerMenuRequests) {
-        return customerMenuRequests.stream()
+    public static Map<Menu, Quantity> parseOrderRequests(List<OrderRequest> orderRequests) {
+        return orderRequests.stream()
                 .collect(Collectors.toMap(
                         request -> Menu.findByName(request.getMenuName()),
                         request -> Quantity.create(request.getQuantity())
