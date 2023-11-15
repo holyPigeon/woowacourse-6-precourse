@@ -2,6 +2,7 @@ package christmas.config;
 
 public enum PromotionConfig {
 
+    YEAR(2023),
     MONTH(12),
     MINIMUM_DAY(1),
     MAXIMUM_DAY(31),
