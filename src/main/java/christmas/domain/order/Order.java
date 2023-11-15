@@ -10,6 +10,7 @@ import christmas.validator.OrderValidator;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class Order {
 
@@ -44,6 +45,19 @@ public class Order {
                 .stream()
                 .mapToInt(entry -> getMenuPrice(entry) * getEachQuantity(entry))
                 .sum();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Order order = (Order) o;
+        return Objects.equals(getOrder(), order.getOrder());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getOrder());
     }
 
     private Integer getEachQuantity(Map.Entry<Menu, Quantity> entry) {

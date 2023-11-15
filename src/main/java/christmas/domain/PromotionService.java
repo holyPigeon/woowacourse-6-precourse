@@ -12,6 +12,7 @@ import christmas.dto.response.OrderResponse;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public class PromotionService {
 
@@ -91,6 +92,19 @@ public class PromotionService {
 
     public List<Discount> findAvailableDiscounts() {
         return discountManager.findAvailableDiscounts();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PromotionService that = (PromotionService) o;
+        return Objects.equals(discountManager, that.discountManager) && Objects.equals(order, that.order) && Objects.equals(getDay(), that.getDay());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(discountManager, order, getDay());
     }
 
     public Day getDay() {

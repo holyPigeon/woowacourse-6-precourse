@@ -53,9 +53,7 @@ public enum Menu {
     }
 
     public static Map<Menu, Quantity> getGiftMenus() {
-        return Map.of(
-                Menu.CHAMPAGNE, Quantity.create(1)
-        );
+        return Map.of(Menu.CHAMPAGNE, Quantity.create(1));
     }
 
     public String getName() {

@@ -11,6 +11,7 @@ import christmas.dto.response.AvailableDiscountResponse;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class DiscountManager {
 
@@ -63,6 +64,19 @@ public class DiscountManager {
                 .stream()
                 .filter(Discount::getIsAvailable)
                 .toList();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        DiscountManager that = (DiscountManager) o;
+        return Objects.equals(getDiscounts(), that.getDiscounts());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getDiscounts());
     }
 
     public List<Discount> getDiscounts() {
