@@ -2,12 +2,14 @@ package christmas.dto.response;
 
 import christmas.domain.PreviewService;
 import christmas.domain.order.Badge;
+import christmas.domain.order.Day;
 import christmas.domain.order.Order;
 
 import java.util.List;
 
 public class DiscountPreviewResponse {
 
+    private Day day;
     private List<OrderResponse> orderRespons;
     private int initialPrice;
     private List<GiftMenuResponse> giftMenuResponses;
@@ -16,7 +18,8 @@ public class DiscountPreviewResponse {
     private int discountedPrice;
     private Badge badge;
 
-    public DiscountPreviewResponse(PreviewService previewService, Order order) {
+    public DiscountPreviewResponse(PreviewService previewService, Order order, Day day) {
+        this.day = day;
         this.orderRespons = previewService.findOrderResponse(order);
         this.initialPrice = previewService.calculateInitialPrice(order);
         this.giftMenuResponses = previewService.findGiftMenuResponses();
@@ -26,8 +29,12 @@ public class DiscountPreviewResponse {
         this.badge = previewService.calculateBadge(order);
     }
 
-    public static DiscountPreviewResponse of(PreviewService previewService, Order order) {
-        return new DiscountPreviewResponse(previewService, order);
+    public static DiscountPreviewResponse of(PreviewService previewService, Order order, Day day) {
+        return new DiscountPreviewResponse(previewService, order, day);
+    }
+
+    public Day getDay() {
+        return day;
     }
 
     public List<OrderResponse> getOrderResponses() {

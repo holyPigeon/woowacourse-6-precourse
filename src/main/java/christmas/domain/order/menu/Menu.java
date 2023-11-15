@@ -40,8 +40,8 @@ public enum Menu {
 
     public static Menu findByName(String name) {
         return Arrays.stream(values())
-                .filter(menu -> menu.name.equalsIgnoreCase(name))
-                .findFirst()
+                .filter(menu -> menu.name.equals(name))
+                .findAny()
                 .orElse(Menu.NONE);
     }
 

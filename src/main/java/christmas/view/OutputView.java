@@ -1,12 +1,13 @@
 package christmas.view;
 
 import christmas.domain.order.Badge;
+import christmas.domain.order.Day;
 import christmas.dto.response.AvailableDiscountResponse;
 import christmas.dto.response.DiscountPreviewResponse;
 import christmas.dto.response.GiftMenuResponse;
 import christmas.dto.response.OrderResponse;
+import christmas.view.constant.SystemMessage;
 
-import java.text.DecimalFormat;
 import java.util.List;
 
 public class OutputView {
@@ -16,11 +17,11 @@ public class OutputView {
     }
 
     public static void printIntroductionMessage() {
-        System.out.println("안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.");
+        System.out.println(SystemMessage.INTRODUCTION.getMessage());
     }
 
     public static void printDiscountPreviewMessage(DiscountPreviewResponse discountPreviewResponse) {
-        printDiscountPreviewIntroductionMessage();
+        printDiscountPreviewIntroductionMessage(discountPreviewResponse.getDay());
         printOrderMessage(discountPreviewResponse.getOrderResponses());
         printInitialPriceMessage(discountPreviewResponse.getInitialPrice());
         printGiftMenusMessage(discountPreviewResponse.getGiftMenuResponses());
@@ -30,65 +31,58 @@ public class OutputView {
         printBadgeMessage(discountPreviewResponse.getBadge());
     }
 
-    public static void printDiscountPreviewIntroductionMessage() {
-        System.out.printf("12월 %d일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!%n", 26);
+    public static void printDiscountPreviewIntroductionMessage(Day day) {
+        System.out.println(SystemMessage.DISCOUNT_PREVIEW_INTRODUCTION.getIntroductionMessage(day.getPrimitiveDay()));
     }
 
     private static void printOrderMessage(List<OrderResponse> order) {
         System.out.println();
-        System.out.println("<주문 메뉴>");
-        order.forEach(eachMenu -> System.out.printf("%s %d개%n", eachMenu.getName(), eachMenu.getQuantity()));
+        System.out.println(SystemMessage.ORDER_TITLE.getTitleMessage());
+        order.forEach(eachMenu ->
+                System.out.print(SystemMessage.ORDER_FORMAT.getOrderMessage(eachMenu)));
     }
 
     private static void printInitialPriceMessage(int initialPrice) {
         System.out.println();
-        System.out.println("<할인 전 총주문 금액>");
-        DecimalFormat decimalFormat = new DecimalFormat("###,###");
-        System.out.printf("%s원%n", decimalFormat.format(initialPrice));
+        System.out.println(SystemMessage.INITIAL_PRICE_TITLE.getTitleMessage());
+        System.out.println(SystemMessage.MONEY_FORMAT.getMoneyMessage(initialPrice));
     }
 
     private static void printGiftMenusMessage(List<GiftMenuResponse> giftMenus) {
         System.out.println();
-        System.out.println("<증정 메뉴>");
+        System.out.println(SystemMessage.GIFT_MENUS_TITLE.getTitleMessage());
         if (giftMenus.size() == 0) {
-            System.out.println("없음");
+            System.out.println(SystemMessage.NONE.getMessage());
         }
-        giftMenus.forEach(giftMenu -> System.out.printf("%s %d개%n", giftMenu.getName(), giftMenu.getQuantity()));
+        giftMenus.forEach(eachMenu ->
+                System.out.print(SystemMessage.ORDER_FORMAT.getGiftMessage(eachMenu)));
     }
 
     private static void printAvailableDiscountsMessage(List<AvailableDiscountResponse> availableDiscounts) {
         System.out.println();
-        System.out.println("<혜택 내역>");
-        DecimalFormat decimalFormat = new DecimalFormat("###,###");
+        System.out.println(SystemMessage.AVAILABLE_DISCOUNTS_TITLE.getTitleMessage());
         if (availableDiscounts.size() == 0) {
-            System.out.println("없음");
+            System.out.println(SystemMessage.NONE.getMessage());
         }
-        availableDiscounts.forEach(availableDiscount -> System.out.printf("%s: -%s%n", availableDiscount.getName(), decimalFormat.format(availableDiscount.getDiscountAmount())));
+        availableDiscounts.forEach(discount ->
+                System.out.print(SystemMessage.DISCOUNT_FORMAT.getDiscountMessage(discount)));
     }
 
     private static void printDiscountAmountMessage(int discountAmount) {
         System.out.println();
-        System.out.println("<총혜택 금액>");
-        DecimalFormat decimalFormat = new DecimalFormat("###,###");
-        if (discountAmount != 0) {
-            System.out.printf("-%s원%n", decimalFormat.format(discountAmount));
-        }
-        if (discountAmount == 0) {
-            System.out.printf("%s원%n", decimalFormat.format(discountAmount));
-        }
-
+        System.out.println(SystemMessage.DISCOUNT_AMOUNT_TITLE.getTitleMessage());
+        System.out.println(SystemMessage.MONEY_FORMAT.getDiscountMoneyMessage(discountAmount));
     }
 
     private static void printDiscountedPriceMessage(int discountedPrice) {
         System.out.println();
-        System.out.println("<할인 후 예상 결제 금액>");
-        DecimalFormat decimalFormat = new DecimalFormat("###,###");
-        System.out.printf("%s원%n", decimalFormat.format(discountedPrice));
+        System.out.println(SystemMessage.DISCOUNTED_PRICE_TITLE.getTitleMessage());
+        System.out.println(SystemMessage.MONEY_FORMAT.getMoneyMessage(discountedPrice));
     }
 
     private static void printBadgeMessage(Badge badge) {
         System.out.println();
-        System.out.println("<12월 이벤트 배지>");
-        System.out.print(badge.getName());
+        System.out.println(SystemMessage.BADGE_TITLE.getTitleMessage());
+        System.out.print(SystemMessage.BADGE_TITLE.getBadgeMessage(badge.getName()));
     }
 }

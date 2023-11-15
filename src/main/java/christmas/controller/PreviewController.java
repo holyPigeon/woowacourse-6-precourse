@@ -27,15 +27,15 @@ public class PreviewController {
         Order order = readWithExceptionHandling(PreviewController::readOrder); // 메뉴 입력
         PreviewService previewService = PreviewService.create(order, day);
 
-        printDiscountPreviewMessage(order, previewService);
+        printDiscountPreviewMessage(order, previewService, day);
     }
 
     private static void printIntroductionMessage() {
         OutputView.printIntroductionMessage(); // 인트로 메시지 출력
     }
 
-    private static void printDiscountPreviewMessage(Order order, PreviewService previewService) {
-        OutputView.printDiscountPreviewMessage(DiscountPreviewResponse.of(previewService, order));
+    private static void printDiscountPreviewMessage(Order order, PreviewService previewService, Day day) {
+        OutputView.printDiscountPreviewMessage(DiscountPreviewResponse.of(previewService, order, day));
     }
 
     private static Day readDay() throws IllegalArgumentException {
