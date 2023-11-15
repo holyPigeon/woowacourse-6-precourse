@@ -59,7 +59,7 @@ public class DiscountManager {
                 .toList();
     }
 
-    public List<Discount> findAvailableDiscounts() {
+    private List<Discount> findAvailableDiscounts() {
         return discounts
                 .stream()
                 .filter(Discount::getIsAvailable)
