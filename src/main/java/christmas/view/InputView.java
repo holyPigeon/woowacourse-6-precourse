@@ -28,4 +28,8 @@ public class InputView {
 
         return InputUtil.parseOrder(input);
     }
+
+    public static void closeRead() {
+        Console.close();
+    }
 }
