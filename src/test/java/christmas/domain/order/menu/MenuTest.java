@@ -20,4 +20,30 @@ class MenuTest {
         //then
         assertThat(menuName).isEqualTo(findMenu.getName());
     }
+
+    @Test
+    @DisplayName("증정 메뉴가 주어졌을 때, isGiftMenu가 true를 반환한다.")
+    void return_isGift_true_when_gift_menu_is_given() {
+        //given
+        Menu champagne = Menu.CHAMPAGNE;
+
+        //when
+        boolean isGift = Menu.isGiftMenu(champagne);
+
+        //then
+        assertThat(isGift).isEqualTo(true);
+    }
+
+    @Test
+    @DisplayName("일반 메뉴가 주어졌을 때, isGiftMenu가 false를 반환한다.")
+    void return_isGift_false_when_regular_menu_is_given() {
+        //given
+        Menu tBoneSteak = Menu.T_BONE_STEAK;
+
+        //when
+        boolean isGift = Menu.isGiftMenu(tBoneSteak);
+
+        //then
+        assertThat(isGift).isEqualTo(false);
+    }
 }
