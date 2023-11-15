@@ -51,8 +51,8 @@ public class OrderValidator {
     Day 검증
      */
     public static void validateIsDateInRange(Integer day) {
-        if (isDayInRange(day)) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_ORDER.getMessage());
+        if (!isDayInRange(day)) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_DATE.getMessage());
         }
     }
 

@@ -8,31 +8,31 @@ import java.util.List;
 
 public class DiscountPreviewResponse {
 
-    private Day day;
+    private int day;
     private List<OrderResponse> orderRespons;
     private int initialPrice;
     private List<GiftMenuResponse> giftMenuResponses;
     private List<AvailableDiscountResponse> availableDiscountResponses;
     private int discountAmount;
     private int discountedPrice;
-    private Badge badge;
+    private String badge;
 
     public DiscountPreviewResponse(PromotionService promotionService) {
-        this.day = day;
+        this.day = promotionService.getDay().getPrimitiveDay();
         this.orderRespons = promotionService.findOrderResponse();
         this.initialPrice = promotionService.calculateInitialPrice();
         this.giftMenuResponses = promotionService.findGiftMenuResponses();
         this.availableDiscountResponses = promotionService.findAvailableDiscountResponses();
         this.discountAmount = promotionService.calculateDiscountAmount();
         this.discountedPrice = promotionService.calculateDiscountedPrice();
-        this.badge = promotionService.calculateBadge();
+        this.badge = promotionService.calculateBadge().getName();
     }
 
     public static DiscountPreviewResponse from(PromotionService promotionService) {
         return new DiscountPreviewResponse(promotionService);
     }
 
-    public Day getDay() {
+    public int getDay() {
         return day;
     }
 
@@ -60,7 +60,7 @@ public class DiscountPreviewResponse {
         return discountedPrice;
     }
 
-    public Badge getBadge() {
+    public String getBadge() {
         return badge;
     }
 }

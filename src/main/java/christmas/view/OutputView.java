@@ -1,7 +1,5 @@
 package christmas.view;
 
-import christmas.domain.order.Badge;
-import christmas.domain.order.Day;
 import christmas.dto.response.AvailableDiscountResponse;
 import christmas.dto.response.DiscountPreviewResponse;
 import christmas.dto.response.GiftMenuResponse;
@@ -31,8 +29,8 @@ public class OutputView {
         printBadgeMessage(discountPreviewResponse.getBadge());
     }
 
-    public static void printDiscountPreviewIntroductionMessage(Day day) {
-        System.out.println(SystemMessage.DISCOUNT_PREVIEW_INTRODUCTION.getIntroductionMessageWithMonthAndDay(day.getPrimitiveDay()));
+    public static void printDiscountPreviewIntroductionMessage(int day) {
+        System.out.println(SystemMessage.DISCOUNT_PREVIEW_INTRODUCTION.getIntroductionMessageWithMonthAndDay(day));
     }
 
     private static void printOrderMessage(List<OrderResponse> order) {

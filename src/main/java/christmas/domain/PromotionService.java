@@ -17,10 +17,12 @@ public class PromotionService {
 
     private final DiscountManager discountManager;
     private final Order order;
+    private final Day day;
 
     private PromotionService(Order order, Day day) {
         this.discountManager = DiscountManager.create(order, day);
         this.order = order;
+        this.day = day;
     }
 
     public static PromotionService create(Order order, Day day) {
@@ -89,5 +91,9 @@ public class PromotionService {
 
     public List<Discount> findAvailableDiscounts() {
         return discountManager.findAvailableDiscounts();
+    }
+
+    public Day getDay() {
+        return day;
     }
 }
