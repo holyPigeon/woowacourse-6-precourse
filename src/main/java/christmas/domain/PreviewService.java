@@ -2,7 +2,6 @@ package christmas.domain;
 
 import christmas.domain.discount.Discount;
 import christmas.domain.discount.DiscountManager;
-import christmas.domain.discount.discounts.GiftDiscount;
 import christmas.domain.order.Badge;
 import christmas.domain.order.Day;
 import christmas.domain.order.Order;
@@ -46,7 +45,7 @@ public class PreviewService {
     증정 메뉴 리스트
      */
     public List<GiftMenuResponse> findGiftMenuResponses() {
-        if (hasGiftDiscount()) {
+        if (discountManager.hasGiftDiscount()) {
             return Menu.getGiftMenus()
                     .entrySet()
                     .stream()
@@ -56,30 +55,18 @@ public class PreviewService {
         return Collections.emptyList();
     }
 
-    public boolean hasGiftDiscount() {
-        return findAvailableDiscounts()
-                .stream()
-                .anyMatch(discount -> discount instanceof GiftDiscount);
-    }
-
     /*
     혜택 내역 리스트
      */
     public List<AvailableDiscountResponse> findAvailableDiscountResponses() {
-        return findAvailableDiscounts()
-                .stream()
-                .map(AvailableDiscountResponse::from)
-                .toList();
+        return discountManager.findAvailableDiscountResponses();
     }
 
     /*
     총혜택 금액
      */
     public int calculateDiscountAmount() {
-        return findAvailableDiscounts()
-                .stream()
-                .mapToInt(Discount::getDiscountAmount)
-                .sum();
+        return discountManager.calculateDiscountAmount();
     }
 
     /*
@@ -90,11 +77,7 @@ public class PreviewService {
     }
 
     public int calculateActualDiscountAmount() {
-        return findAvailableDiscounts()
-                .stream()
-                .filter(discount -> !(discount instanceof  GiftDiscount))
-                .mapToInt(Discount::getDiscountAmount)
-                .sum();
+        return discountManager.calculateActualDiscountAmount();
     }
 
     /*
@@ -105,9 +88,6 @@ public class PreviewService {
     }
 
     public List<Discount> findAvailableDiscounts() {
-        return discountManager.getDiscounts()
-                .stream()
-                .filter(Discount::getIsAvailable)
-                .toList();
+        return discountManager.findAvailableDiscounts();
     }
 }
