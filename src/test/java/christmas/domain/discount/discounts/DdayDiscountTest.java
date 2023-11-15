@@ -7,6 +7,8 @@ import christmas.util.InputUtil;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
@@ -39,11 +41,12 @@ class DdayDiscountTest {
         assertThat(ddayDiscount.getDiscountAmount()).isEqualTo(1200);
     }
 
-    @Test
+    @ParameterizedTest
     @DisplayName("주문과 날짜 정보가 주어졌을 때, 할인 가능 여부를 설정한다.")
-    void return_is_discount_available_when_order_and_day_is_given() {
+    @ValueSource(ints = {1, 4, 9, 15, 25})
+    void return_is_discount_available_when_order_and_day_is_given(int day) {
         // when
-        ddayDiscount.checkIsAvailableDiscount(order, day);
+        ddayDiscount.checkIsAvailableDiscount(order, Day.create(day));
 
         // then
         assertThat(ddayDiscount.getIsAvailable()).isEqualTo(true);
