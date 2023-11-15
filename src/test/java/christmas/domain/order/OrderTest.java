@@ -45,4 +45,21 @@ class OrderTest {
         assertThat(name2).isEqualTo(findOrderResponses.get(1).getName());
         assertThat(quantity2).isEqualTo(findOrderResponses.get(1).getQuantity());
     }
+
+    @Test
+    @DisplayName("주어진 주문을 바탕으로 총주문 금액을 계산하여 반환한다.")
+    void calculate_initial_price_when_order_is_given() {
+        //given
+        Map<Menu, Quantity> order = InputUtil.parseOrderRequests(orderRequests);
+        int price = order.entrySet()
+                .stream()
+                .mapToInt(entry -> entry.getKey().getPrice() * entry.getValue().getPrimitiveQuantity())
+                .sum();
+
+        //when
+        int calculatedPrice = this.order.calculateInitialPrice();
+
+        //then
+        assertThat(price).isEqualTo(calculatedPrice);
+    }
 }
