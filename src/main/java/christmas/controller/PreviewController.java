@@ -31,6 +31,10 @@ public class PreviewController {
         printDiscountPreviewMessage(previewService);
     }
 
+    private static void printIntroductionMessage() {
+        OutputView.printIntroductionMessage();
+    }
+
     private static Day readDay() throws IllegalArgumentException {
         return Day.create(InputView.readEstimatedVisitingDate());
     }
@@ -51,10 +55,6 @@ public class PreviewController {
 
     private static void closeRead() {
         InputView.closeRead();
-    }
-
-    private static void printIntroductionMessage() {
-        OutputView.printIntroductionMessage();
     }
 
     private static void printDiscountPreviewMessage(PreviewService previewService) {
