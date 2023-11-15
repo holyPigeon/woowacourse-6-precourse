@@ -33,20 +33,20 @@ class WeekdayDiscountTest {
     }
 
     @Test
-    @DisplayName("주문에 디저트 메뉴가 포함되어 있을 경우, 할인을 적용한다.")
+    @DisplayName("주문 중의 디저트 개수와 기준 금액을 곱한 만큼 할인을 적용한다.")
     void return_discount_amount_when_order_and_day_is_given() {
         // given
-        int specialDiscountAmount = 2023 * 2;
+        int weekdayDiscountAmount = 2023 * 2;
 
         // when
         weekdayDiscount.calculateDiscountAmount(order, day);
 
         // then
-        assertThat(weekdayDiscount.getDiscountAmount()).isEqualTo(specialDiscountAmount);
+        assertThat(weekdayDiscount.getDiscountAmount()).isEqualTo(weekdayDiscountAmount);
     }
 
     @ParameterizedTest
-    @DisplayName("평일 중에 할인 가능하다.")
+    @DisplayName("평일 중이고 주문에 디저트 메뉴가 포함되어 있을 경우, 할인 가능하다.")
     @ValueSource(ints = {4, 5, 18, 20, 22})
     void return_is_discount_available_when_order_and_day_is_given(int day) {
         // when
