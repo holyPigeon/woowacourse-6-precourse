@@ -1,25 +1,23 @@
 package christmas.dto.response;
 
 import christmas.domain.PromotionService;
-import christmas.domain.order.Badge;
-import christmas.domain.order.Day;
 
 import java.util.List;
 
 public class DiscountPreviewResponse {
 
-    private int day;
-    private List<OrderResponse> orderRespons;
-    private int initialPrice;
-    private List<GiftMenuResponse> giftMenuResponses;
-    private List<AvailableDiscountResponse> availableDiscountResponses;
-    private int discountAmount;
-    private int discountedPrice;
-    private String badge;
+    private final int day;
+    private final List<OrderResponse> orderResponse;
+    private final int initialPrice;
+    private final List<GiftMenuResponse> giftMenuResponses;
+    private final List<AvailableDiscountResponse> availableDiscountResponses;
+    private final int discountAmount;
+    private final int discountedPrice;
+    private final String badge;
 
     public DiscountPreviewResponse(PromotionService promotionService) {
         this.day = promotionService.getDay().getPrimitiveDay();
-        this.orderRespons = promotionService.findOrderResponse();
+        this.orderResponse = promotionService.findOrderResponse();
         this.initialPrice = promotionService.calculateInitialPrice();
         this.giftMenuResponses = promotionService.findGiftMenuResponses();
         this.availableDiscountResponses = promotionService.findAvailableDiscountResponses();
@@ -37,7 +35,7 @@ public class DiscountPreviewResponse {
     }
 
     public List<OrderResponse> getOrderResponses() {
-        return orderRespons;
+        return orderResponse;
     }
 
     public int getInitialPrice() {

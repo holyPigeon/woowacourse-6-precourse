@@ -4,8 +4,8 @@ import christmas.domain.discount.Discount;
 
 public class AvailableDiscountResponse {
 
-    private String name;
-    private int discountAmount;
+    private final String name;
+    private final int discountAmount;
 
     public AvailableDiscountResponse(Discount discount) {
         this.name = discount.getName();

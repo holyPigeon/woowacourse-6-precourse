@@ -5,8 +5,8 @@ import christmas.domain.order.menu.Quantity;
 
 public class OrderResponse {
 
-    private String name;
-    private int quantity;
+    private final String name;
+    private final int quantity;
 
     private OrderResponse(Menu menu, Quantity quantity) {
         this.name = menu.getName();

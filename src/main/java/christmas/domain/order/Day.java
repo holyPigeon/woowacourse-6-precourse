@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public class Day {
 
-    private Integer day;
+    private final Integer day;
 
     private Day(Integer day) {
         validate(day);

@@ -5,9 +5,9 @@ import christmas.domain.order.menu.Quantity;
 
 public class GiftMenuResponse {
 
-    private String name;
+    private final String name;
 
-    private int quantity;
+    private final int quantity;
 
     private GiftMenuResponse(Menu menu, Quantity quantity) {
         this.name = menu.getName();

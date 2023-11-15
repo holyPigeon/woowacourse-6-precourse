@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public class Quantity {
 
-    private Integer quantity;
+    private final Integer quantity;
 
     private Quantity(Integer quantity) {
         validate(quantity);

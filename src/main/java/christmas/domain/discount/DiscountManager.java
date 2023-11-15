@@ -15,7 +15,7 @@ import java.util.Objects;
 
 public class DiscountManager {
 
-    private List<Discount> discounts;
+    private final List<Discount> discounts;
 
     private DiscountManager(Order order, Day day) {
         this.discounts = List.of(

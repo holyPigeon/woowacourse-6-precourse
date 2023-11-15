@@ -14,7 +14,7 @@ import java.util.Objects;
 
 public class Order {
 
-    Map<Menu, Quantity> Order = new EnumMap<>(Menu.class);
+    Map<Menu, Quantity> Order;
 
     private Order(List<OrderRequest> orderRequests) {
         Map<Menu, Quantity> order = InputUtil.parseOrderRequests(orderRequests);
