@@ -35,14 +35,6 @@ public class PromotionController {
         OutputView.printIntroductionMessage();
     }
 
-    private static Day readDay() throws IllegalArgumentException {
-        return Day.create(InputView.readEstimatedVisitingDate());
-    }
-
-    private static Order readOrder() throws IllegalArgumentException {
-        return Order.create(InputView.readOrder());
-    }
-
     private static <T> T readWithExceptionHandling(Supplier<T> reader) {
         while (true) {
             try {
@@ -51,6 +43,14 @@ public class PromotionController {
                 System.out.println(exception.getMessage());
             }
         }
+    }
+
+    private static Day readDay() throws IllegalArgumentException {
+        return Day.create(InputView.readEstimatedVisitingDate());
+    }
+
+    private static Order readOrder() throws IllegalArgumentException {
+        return Order.create(InputView.readOrder());
     }
 
     private static void closeRead() {
