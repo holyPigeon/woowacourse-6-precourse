@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
 public class Car {
 
     private final String name;
@@ -22,6 +24,12 @@ public class Car {
     private void validateHasValidLength(String name) {
         if (name.length() > 5) {
             throw new IllegalArgumentException("[ERROR] 입력값의 길이가 유효하지 않습니다.");
+        }
+    }
+
+    public void move(int randomNumber) {
+        if (randomNumber >= 4) {
+            distance++;
         }
     }
 }
