@@ -30,6 +30,8 @@ public class RacingController {
             cars.moveEachCars();
             outputView.printMovementResult(cars.getMovementResult());
         }
+
+        outputView.printWinnersResult(cars.getWinnersResult());
     }
 
     private Integer readTryCount() {
