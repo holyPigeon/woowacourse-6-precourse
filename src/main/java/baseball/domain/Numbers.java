@@ -3,6 +3,7 @@ package baseball.domain;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.IntStream;
 
 public class Numbers {
 
@@ -17,6 +18,9 @@ public class Numbers {
         return new Numbers(numbers);
     }
 
+    /*
+    검증 로직
+     */
     public void validateNumbers(List<Integer> numbers) {
         validateIsEachNumberNotZero(numbers);
         validateIsEachNumberUnique(numbers);
@@ -34,5 +38,24 @@ public class Numbers {
         if (uniqueNumbers.size() != numbers.size()) {
             throw new IllegalArgumentException("[ERROR] 각 자리수는 중복될 수 없습니다.");
         }
+    }
+
+    /*
+    비즈니스 로직
+     */
+    public Hint generateHint(List<Integer> computerNumbers) {
+        return Hint.create(getStrikeCount(computerNumbers), getBallCount(computerNumbers));
+    }
+
+    private int getStrikeCount(List<Integer> computerNumbers) {
+        return (int) IntStream.range(0, numbers.size())
+                .filter(i -> numbers.get(i).equals(computerNumbers.get(i)))
+                .count();
+    }
+
+    private int getBallCount(List<Integer> computerNumbers) {
+        return (int) IntStream.range(0, computerNumbers.size())
+                .filter(i -> !numbers.get(i).equals(computerNumbers.get(i)))
+                .count();
     }
 }
