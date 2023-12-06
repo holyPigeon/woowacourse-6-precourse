@@ -37,6 +37,7 @@ public class BaseballController {
 
             Hint hint = playerNumbers.generateHint(computerNumbers);
             if (hint.isThreeStrike()) {
+                outputView.printHintMessage(hint.getHintMessage());
                 outputView.gameEndMessage();
                 break;
             }

@@ -50,13 +50,21 @@ public class Numbers {
 
     private int getStrikeCount(List<Integer> computerNumbers) {
         return (int) IntStream.range(0, numbers.size())
-                .filter(i -> numbers.get(i).equals(computerNumbers.get(i)))
+                .filter(i -> isNumberMatch(computerNumbers, i))
                 .count();
     }
 
     private int getBallCount(List<Integer> computerNumbers) {
         return (int) IntStream.range(0, computerNumbers.size())
-                .filter(i -> !numbers.get(i).equals(computerNumbers.get(i)))
+                .filter(i ->  isNumberContained(computerNumbers, i) && !isNumberMatch(computerNumbers, i))
                 .count();
+    }
+
+    private boolean isNumberContained(List<Integer> computerNumbers, int i) {
+        return computerNumbers.contains(numbers.get(i));
+    }
+
+    private boolean isNumberMatch(List<Integer> computerNumbers, int i) {
+        return numbers.get(i).equals(computerNumbers.get(i));
     }
 }
