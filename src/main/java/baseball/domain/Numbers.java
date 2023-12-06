@@ -1,5 +1,6 @@
 package baseball.domain;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -11,7 +12,7 @@ public class Numbers {
 
     private Numbers(List<Integer> numbers) {
         validateNumbers(numbers);
-        this.numbers = numbers;
+        this.numbers = new ArrayList<>(numbers);
     }
 
     public static Numbers create(List<Integer> numbers) {
@@ -43,8 +44,8 @@ public class Numbers {
     /*
     비즈니스 로직
      */
-    public Hint generateHint(List<Integer> computerNumbers) {
-        return Hint.create(getStrikeCount(computerNumbers), getBallCount(computerNumbers));
+    public Hint generateHint(Numbers computerNumbers) {
+        return Hint.create(getStrikeCount(computerNumbers.numbers), getBallCount(computerNumbers.numbers));
     }
 
     private int getStrikeCount(List<Integer> computerNumbers) {
