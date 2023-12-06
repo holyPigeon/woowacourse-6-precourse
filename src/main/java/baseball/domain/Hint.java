@@ -1,5 +1,7 @@
 package baseball.domain;
 
+import java.util.Objects;
+
 public class Hint {
 
     private int strike;
@@ -32,5 +34,18 @@ public class Hint {
 
     public boolean isThreeStrike() {
         return strike == 3;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Hint hint = (Hint) o;
+        return strike == hint.strike && ball == hint.ball;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(strike, ball);
     }
 }
