@@ -11,7 +11,7 @@ public class InputView {
 
     }
 
-    private static InputView create() {
+    public static InputView create() {
         return new InputView();
     }
 
@@ -42,7 +42,7 @@ public class InputView {
                 .collect(Collectors.toList());
     }
 
-    public int gameRetryMessage() {
+    public int readGameRetryCommand() {
         System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
         String input = Console.readLine();
         validateRetryCommand(input);

@@ -6,7 +6,7 @@ public class OutputView {
 
     }
 
-    private static OutputView create() {
+    public static OutputView create() {
         return new OutputView();
     }
 
