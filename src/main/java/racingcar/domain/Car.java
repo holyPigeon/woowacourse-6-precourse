@@ -1,20 +1,17 @@
 package racingcar.domain;
 
-import camp.nextstep.edu.missionutils.Randoms;
-
 public class Car {
 
     private final String name;
-    private Integer distance;
+    private Integer distance = 0;
 
-    private Car(String name, Integer distance) {
+    private Car(String name) {
         validateName(name);
         this.name = name;
-        this.distance = distance;
     }
 
-    public static Car create(String name, Integer distance) {
-        return new Car(name, distance);
+    public static Car create(String name) {
+        return new Car(name);
     }
 
     private void validateName(String name) {
