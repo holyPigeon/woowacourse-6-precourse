@@ -27,6 +27,7 @@ public class BaseballController {
         do {
             Numbers computerNumbers = Numbers.create(RandomNumberGenerator.generateRandomNumbers());
             matchNumbers(computerNumbers);
+            gameRetry = readRetryCommand(gameRetry);
         } while (gameRetry);
     }
 
@@ -41,5 +42,10 @@ public class BaseballController {
             }
             outputView.printHintMessage(hint.getHintMessage());
         }
+    }
+
+    private boolean readRetryCommand(boolean gameRetry) {
+
+        return inputView.readGameRetryCommand() == 1;
     }
 }
