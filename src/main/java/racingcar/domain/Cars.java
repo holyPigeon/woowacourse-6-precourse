@@ -16,6 +16,10 @@ public class Cars {
         return new Cars(cars);
     }
 
+    public void moveEachCars() {
+        cars.forEach(car -> car.move(RandomNumberGenerator.pickRandomNumber()));
+    }
+
     private List<Car> getMostMovedCars() {
         int maxDistance = getMaxDistance();
 
