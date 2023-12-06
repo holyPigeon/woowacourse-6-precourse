@@ -36,4 +36,12 @@ public class Car {
     public String getMovementResult() {
         return "-".repeat(distance);
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public Integer getDistance() {
+        return distance;
+    }
 }
