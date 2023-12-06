@@ -29,4 +29,11 @@ public class Cars {
                 .max()
                 .orElse(0);
     }
+
+    public String getMovementResult() {
+        return cars.stream()
+                .map(car -> String.format("%s : %s", car.getName(), car.getMovementResult()))
+                .reduce((result, carString) -> String.join("\n", result, carString))
+                .orElse("");
+    }
 }
