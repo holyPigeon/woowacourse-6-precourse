@@ -29,6 +29,43 @@ public class InputView {
         validateIsValidLength(input);
     }
 
+    private void validateIsValidLength(String input) {
+        if (input.length() != 3) {
+            throw new IllegalArgumentException("[ERROR] 입력값의 길이가 유효하지 않습니다.");
+        }
+    }
+
+    private List<Integer> parsePlayerNumberInput(String input) {
+        return input.chars()
+                .map(Character::getNumericValue)
+                .boxed()
+                .collect(Collectors.toList());
+    }
+
+    public int gameRetryMessage() {
+        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+        String input = Console.readLine();
+        validateRetryCommand(input);
+
+        return Integer.parseInt(input);
+    }
+
+    private void validateRetryCommand(String input) {
+        validateIsNotBlank(input);
+        validateIsDigit(input);
+        validateIsValidCommand(input);
+    }
+
+    private void validateIsValidCommand(String input) {
+        int number = Integer.parseInt(input);
+        if (number != 1 && number != 2) {
+            throw new IllegalArgumentException("[ERROR] 1 또는 2의 숫자가 아닙니다.");
+        }
+    }
+
+    /*
+    공통 검증
+     */
     private void validateIsNotBlank(String input) {
         if (input.isBlank()) {
             throw new IllegalArgumentException("[ERROR] 입력값이 비어있습니다.");
@@ -51,18 +88,4 @@ public class InputView {
             return false;
         }
     }
-
-    private void validateIsValidLength(String input) {
-        if (input.length() != 3) {
-            throw new IllegalArgumentException("[ERROR] 입력값의 길이가 유효하지 않습니다.");
-        }
-    }
-
-    private List<Integer> parsePlayerNumberInput(String input) {
-        return input.chars()
-                .map(Character::getNumericValue)
-                .boxed()
-                .collect(Collectors.toList());
-    }
-
 }
