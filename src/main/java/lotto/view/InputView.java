@@ -77,6 +77,22 @@ public class InputView {
     }
 
     /*
+    보너스 번호 입력
+     */
+    public Integer readBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String input = Console.readLine();
+        validateBonusNumberInput(input);
+
+        return Integer.parseInt(input);
+    }
+
+    private void validateBonusNumberInput(String input) {
+        validateIsBlank(input);
+        validateIsDigit(input);
+    }
+
+    /*
      공통 검증
       */
     private void validateIsBlank(String input) {
