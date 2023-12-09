@@ -2,10 +2,11 @@ package lotto.domain;
 
 import lotto.domain.dto.WinningResult;
 
+import java.text.DecimalFormat;
 import java.util.EnumMap;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class LottoService {
 
@@ -44,5 +45,14 @@ public class LottoService {
         }
 
         return WinningResult.create(winningResult);
+    }
+
+    public double calculateProfitRate(WinningResult winningResult, Integer purchaseAmount) {
+        AtomicInteger totalProfit = new AtomicInteger();
+
+        winningResult.getWinningResult()
+                .forEach((key, value) -> totalProfit.addAndGet(key.getPrizeMoney() * value));
+
+        return Math.round((double) totalProfit.get() / purchaseAmount * 100.0);
     }
 }
