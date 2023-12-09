@@ -1,24 +1,21 @@
 package lotto.domain.util;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
 
 import java.util.List;
 
-public class RandomLottoGenerator {
+public class RandomLottoNumbersGenerator {
 
-    private RandomLottoGenerator() {
+    private RandomLottoNumbersGenerator() {
 
     }
 
-    public static Lotto generateRandomLotto() {
+    public static List<LottoNumber> generateRandomLottoNumbers() {
         List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
 
-        return Lotto.create(
-                randomNumbers.stream()
+        return randomNumbers.stream()
                 .map(LottoNumber::create)
-                .toList()
-        );
+                .toList();
     }
 }
