@@ -11,6 +11,7 @@ import lotto.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Supplier;
 
 public class LottoController {
 
@@ -28,7 +29,7 @@ public class LottoController {
 
     public void run() {
         // 로또 구입금액 입력
-        Integer purchaseAmount = inputView.readPurchaseAmount();
+        Integer purchaseAmount = readWithExceptionHandling(() -> inputView.readPurchaseAmount());
 
         // 발행된 로또 목록 출력
         int purchasedLottoCount = purchaseAmount / 1000;
@@ -42,9 +43,9 @@ public class LottoController {
         }
 
         // 사용자 당첨 번호 입력
-        Lotto playerLotto = Lotto.create(inputView.readPlayerLotto());
+        Lotto playerLotto = Lotto.create(readWithExceptionHandling(() -> inputView.readPlayerLotto()));
         // 사용자 보너스 번호 입력
-        LottoNumber playerBonusNumber = LottoNumber.create(inputView.readBonusNumber());
+        LottoNumber playerBonusNumber = LottoNumber.create(readWithExceptionHandling(() -> inputView.readBonusNumber()));
 
         // 로또 서비스 생성
         LottoService lottoService = LottoService.create(Lottos.create(winningLottos), playerLotto, playerBonusNumber);
@@ -54,5 +55,15 @@ public class LottoController {
         String winningResultString = winningResult.toString();
         double profitRate = lottoService.calculateProfitRate(winningResult, purchaseAmount);
         outputView.printWinningResult(winningResultString, profitRate);
+    }
+
+    private static <T> T readWithExceptionHandling(Supplier<T> reader) {
+        while (true) {
+            try {
+                return reader.get();
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
     }
 }
