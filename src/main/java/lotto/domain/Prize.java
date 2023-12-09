@@ -37,7 +37,12 @@ public enum Prize {
         return hasBonusNumber;
     }
 
-    public String getPrizeMoney() {
+    public String getDecimalFormatPrizeMoney() {
         DecimalFormat decimalFormat = new DecimalFormat("###,###");
         return decimalFormat.format(prizeMoney);
+    }
+
+    public int getPrizeMoney() {
+        return prizeMoney;
+    }
 }
