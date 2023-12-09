@@ -11,11 +11,10 @@ public class RandomLottoNumbersGenerator {
 
     }
 
-    public static List<LottoNumber> generateRandomLottoNumbers() {
+    public static List<Integer> generateRandomLottoNumbers() {
         List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
 
         return randomNumbers.stream()
-                .map(LottoNumber::create)
                 .toList();
     }
 }

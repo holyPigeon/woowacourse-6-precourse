@@ -24,17 +24,21 @@ public class WinningResult {
             if (prize.equals(Prize.FIVE_NUMBER_AND_BONUS_NUMBER_MATCH)) {
                 result.append(String.format("%s개 일치, 보너스 볼 일치 (%s원) - %d개\n",
                         prize.getMatchCount(),
-                        prize.getPrizeMoney(),
+                        prize.getDecimalFormatPrizeMoney(),
                         winningResult.getOrDefault(prize, 0)));
                 continue;
             }
 
             result.append(String.format("%s개 일치 (%s원) - %d개\n",
                     prize.getMatchCount(),
-                    prize.getPrizeMoney(),
+                    prize.getDecimalFormatPrizeMoney(),
                     winningResult.getOrDefault(prize, 0)));
         }
 
         return result.toString();
+    }
+
+    public Map<Prize, Integer> getWinningResult() {
+        return new EnumMap<>(winningResult);
     }
 }
