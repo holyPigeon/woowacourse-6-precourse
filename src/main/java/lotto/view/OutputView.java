@@ -1,9 +1,9 @@
 package lotto.view;
 
-import lotto.domain.Lotto;
+import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.LottoNumber;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class OutputView {
 
@@ -16,21 +16,23 @@ public class OutputView {
     }
 
     public void printPurchasedLottoCount(Integer purchasedLottoCount) {
+        System.out.println();
         System.out.println(purchasedLottoCount + "개를 구매했습니다.");
     }
 
     public void printGeneratedLotto(Lotto lotto) {
-        String result = lotto.getNumbers().stream()
-                .map(lottoNumber -> lottoNumber.getNumber().toString())
-                .collect(Collectors.joining(", ", "[", "]"));
+        List<Integer> list = lotto.getNumbers().stream()
+                .map(LottoNumber::getNumber)
+                .toList();
 
-        System.out.print(result);
+        System.out.println(list);
     }
 
     public void printWinningResult(String winningResult, double profitRate) {
+        System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
         System.out.println(winningResult);
-        System.out.println("총 수익률은 " + profitRate + "%입니다.");
+        System.out.printf("총 수익률은 %.1f%%입니다.", profitRate);
     }
 }
