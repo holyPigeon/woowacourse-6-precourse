@@ -21,9 +21,12 @@ public class WinningResult {
         StringBuilder result = new StringBuilder();
 
         for (Prize prize : Prize.values()) {
+            if (prize.equals(Prize.NONE)) {
+                continue;
+            }
             if (prize.equals(Prize.FIVE_NUMBER_AND_BONUS_NUMBER_MATCH)) {
                 result.append(String.format("%s개 일치, 보너스 볼 일치 (%s원) - %d개\n",
-                        prize.getMatchCount(),
+                        prize.getMatchCount() - 1,
                         prize.getDecimalFormatPrizeMoney(),
                         winningResult.getOrDefault(prize, 0)));
                 continue;
